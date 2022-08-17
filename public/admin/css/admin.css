@@ -1,0 +1,110 @@
+[lang=fa-IR]{
+    direction: rtl!important;
+}
+[lang=en]{
+    direction: ltr!important;
+}
+@font-face {
+    font-family: iranyekan;
+    src: url(../fonts/iranyekanwebregular.e31c09af.woff2);
+}
+body {
+    background-color: #fbfbfb;
+    font-family: iranyekan, sans-serif;
+}
+header .search {
+    width: 600px;
+    height: 44px;
+    border-radius: 8px;
+    background: #f0f0f1;
+}
+header .search form span {
+    width: 24px;
+    color: #81858b;
+    background: #f0f0f1;
+}
+header .search form input {
+    border: none;
+    position: relative;
+}
+header .search form input::placeholder {
+    font-size: 12px;
+    color: #81858b;
+    padding: 0 8px;
+    position: absolute;
+    top: 23%;
+}
+.dropdown-menu-end {
+    left: 0 !important;
+    right: auto !important;
+}
+@media (min-width: 991.98px) {
+  main {
+    padding-right: 240px;
+  }
+    .md-screen-header {
+        display: none;
+    }
+    .lg-screen-header {
+        display: block !important;
+    }
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 58px 0 0; /* Height of navbar */
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+  width: 240px;
+  z-index: 600;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    width: 100%;
+  }
+    main {
+        margin-top: 10px !important;
+    }
+}
+.sidebar .active {
+  background: #ef394e;
+  border-color: #ef394e;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+.dropzone {
+    border: 4px #ef394e dashed;
+}
+[type=file]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.form-btn {
+    background: #ef394e;
+    width: 15%;
+    /*cursor: pointer;*/
+    /*color: #fff;*/
+    /*border: none;*/
+    /*box-shadow: 0 2px 5px 0 rgb(0, 0, 0, 20%), 0 2px 10px 0 rgb(0, 0, 0, 10%);*/
+    /*padding: 0.5rem 1.5rem 0.5rem;*/
+    /*font-size: 0.75rem;*/
+    /*line-height: 1.5rem;*/
+    /*border-radius: 0.25rem;*/
+    /*margin-left: 2rem;*/
+    /*transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;*/
+}
+/*.form-btn::-webkit-file-upload-button:hover {*/
+/*    box-shadow: 0 4px 10px 0 rgb(0, 0, 0,20%), 0 4px 20px 0 rgb(0, 0, 0, 10%);*/
+/*}*/

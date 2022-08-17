@@ -1,0 +1,134 @@
+body {
+    background: #eeeff1;
+}
+body.dark {
+    background: #1a1a1a;
+}
+@media only screen and (min-width: 576px){
+    .back {
+        display: block !important;
+    }
+    .history {
+        display: block !important;
+    }
+    .main {
+        width: 75%;
+    }
+}
+.toggle-theme label {
+    width: 60px;
+    height: 34px;
+    border-radius: 50px;
+}
+.toggle-theme input {
+    width: 0;
+    height: 0;
+}
+.toggle-slider {
+    cursor: pointer;
+    border-radius: 50px;
+    z-index: -1;
+    transition: 0.4s;
+}
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    width: 26px;
+    height: 26px;
+    left: 4px;
+    bottom: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+.toggle-theme input:checked + .toggle-slider {
+    background: #fff !important;
+}
+.toggle-theme input:checked + .toggle-slider:before {
+    background: #262626;
+    transform: translateX(26px);
+}
+.toggle-theme input ~ svg {
+    color: #262626 !important;
+}
+.toggle-theme input:checked ~ svg {
+    color: #fff !important;
+}
+.history span {
+    font-weight: 700;
+    border-bottom: 3px solid #ef394e;
+}
+.history span.dark {
+    color: #fff;
+}
+.recent-actions {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: right;
+}
+.recent-actions.dark {
+    color: #fff;
+}
+.recent-item {
+    cursor: pointer;
+}
+.recent-item:hover {
+    background: #dfdfdf;
+}
+p {
+    margin: 0;
+}
+.res {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.back {
+    background: #ef394e;
+}
+.inputs {
+    margin: 16px 0;
+}
+input {
+    text-align: right;
+    background: #eeeff1;
+    border: none;
+}
+input:focus {
+    outline: none;
+}
+#solution {
+    color: #5F5F65;
+}
+#result {
+    font-size: 2rem;
+    font-weight: 700;
+}
+input.dark {
+    background: #1a1a1a;
+    color: #fff !important;
+}
+form div div, button[type=reset] {
+    width: 25%;
+    margin: 1px;
+    cursor: pointer;
+    border: none;
+    font-weight: 700;
+}
+.none-numerical {
+    background: #f5f5f5;
+}
+.none-numerical.dark:not(.result) {
+    background: #36383C;
+    color: #fff;
+}
+.numberical {
+    background: #fcfcfc;
+}
+.numberical.dark {
+    background: #4F5A61;
+    color: #fff;
+}
+.result {
+    background: #ef394e;
+}
