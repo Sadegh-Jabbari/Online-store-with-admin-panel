@@ -235,7 +235,7 @@ $(function () {
             $("body").addClass('dark');
             $(".history span").addClass('dark');
             $(".recent-actions").addClass('dark');
-            $("input").addClass('dark');
+            $(".main input").addClass('dark');
             $(".none-numerical:not(.result)").addClass('dark');
             $(".numberical").addClass('dark');
         } else {

@@ -12,6 +12,19 @@ $(document).ready(function() {
 
     $("[type=file]").text("jvhv");
 
+    // Dark Mode
+    $("#dark-mode").on("click", function () {
+        if ($("#dark-mode").is(":checked")) {
+            $("body").addClass('dark');
+            $("nav").addClass('dark');
+            $(".card").addClass('dark');
+            $("#sidebarMenu .list-group-item").addClass('dark');
+        } else {
+            $("*").removeClass('dark');
+        }
+    });
+
+
     // let path = window.location.href;
     // let target = $('[href="' + path + '"]');
     // target.addClass('active');

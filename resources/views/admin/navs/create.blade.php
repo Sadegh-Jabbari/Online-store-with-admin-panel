@@ -24,7 +24,7 @@
                                 <label for="nav_name" class="w-25">اسم منو</label>
                                 <input type="text" name="nav_name" id="nav_name" class="w-75">
                             </div>
-                            <div class="border-bottom border-2 border-dark my-5 position-relative">
+                            <div class="separator border-bottom border-2 border-dark my-5 position-relative">
                                 <p class="fw-bold position-absolute m-0 px-5 bg-white"
                                    style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
                                     عناصر منو

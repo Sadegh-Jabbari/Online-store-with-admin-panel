@@ -15,6 +15,17 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="navbar-nav d-flex flex-row me-3">
+                <!-- Dark Mode -->
+                <li class="nav-item">
+                    <div class="toggle-theme me-2">
+                        <label for="dark-mode" class="position-relative d-flex align-items-center justify-content-between px-2">
+                            <input type="checkbox" name="dark-mode" id="dark-mode" class="position-absolute opacity-0">
+                            <span class="toggle-slider position-absolute top-0 start-0 bottom-0 end-0 bg-dark"></span>
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                        </label>
+                    </div>
+                </li>
                 <!-- Notification dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
@@ -158,6 +169,17 @@
 
             <!-- Right links -->
             <ul class="navbar-nav ms-auto d-flex flex-row">
+                <!-- Dark Mode -->
+                <li class="nav-item">
+                    <div class="toggle-theme me-2">
+                        <label for="dark-mode" class="position-relative d-flex align-items-center justify-content-between px-2">
+                            <input type="checkbox" name="dark-mode" id="dark-mode" class="position-absolute opacity-0">
+                            <span class="toggle-slider position-absolute top-0 start-0 bottom-0 end-0 bg-dark"></span>
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                        </label>
+                    </div>
+                </li>
                 <!-- Notification dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"

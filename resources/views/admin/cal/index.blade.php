@@ -35,7 +35,7 @@
             <div class="toggle-theme me-2">
                 <label for="dark-mode" class="position-relative d-flex align-items-center justify-content-between px-2">
                     <input type="checkbox" name="dark-mode" id="dark-mode" class="position-absolute opacity-0">
-                    <div class="toggle-slider position-absolute top-0 start-0 bottom-0 end-0 bg-dark"></div>
+                    <span class="toggle-slider position-absolute top-0 start-0 bottom-0 end-0 bg-dark"></span>
                     <i class="fas fa-sun"></i>
                     <i class="fas fa-moon"></i>
                 </label>

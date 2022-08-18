@@ -12,6 +12,9 @@ body {
     background-color: #fbfbfb;
     font-family: iranyekan, sans-serif;
 }
+body.dark {
+    background: #1a1a1a;
+}
 header .search {
     width: 600px;
     height: 44px;
@@ -71,10 +74,13 @@ header .search form input::placeholder {
     }
 }
 .sidebar .active {
-  background: #ef394e;
-  border-color: #ef394e;
+  background: #ef394e !important;
+  border-color: #ef394e !important;
   border-radius: 5px;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+.sidebar.dark .active {
+  box-shadow: 0 2px 5px 0 rgb(255 255 255 / 20%), 0 2px 10px 0 rgb(255 255 255 / 15%);
 }
 
 .sidebar-sticky {
@@ -84,6 +90,79 @@ header .search form input::placeholder {
   padding-top: 0.5rem;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+.toggle-theme label {
+    width: 60px;
+    height: 34px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.toggle-theme input {
+    width: 0;
+    height: 0;
+}
+.toggle-slider {
+    border-radius: 50px;
+    transition: 0.4s;
+}
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    width: 26px;
+    height: 26px;
+    left: 4px;
+    bottom: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+.toggle-theme input:checked + .toggle-slider {
+    background: #fff !important;
+}
+.toggle-theme input:checked + .toggle-slider:before {
+    background: #262626;
+    transform: translateX(26px);
+}
+.toggle-theme input ~ svg {
+    color: #262626 !important;
+    z-index: 1;
+}
+.toggle-theme input:checked ~ svg {
+    color: #fff !important;
+}
+.dark {
+    transition: 0.5s;
+}
+nav.dark {
+    background: #1a1a1a !important;
+}
+nav#main-navbar.dark {
+    box-shadow: 0 10px 20px 0 rgba(255, 255, 255, 20%);
+}
+.navbar-light.dark .nav-link , .navbar-light.dark .navbar-toggler {
+    color: #fff;
+}
+nav#sidebarMenu.dark {
+    box-shadow: 0 2px 5px 0 rgb(255, 255, 255, 20%), 0 2px 10px 0 rgb(255, 255, 255, 15%);
+}
+nav#sidebarMenu .list-group-item.dark {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.125);
+}
+.card.dark {
+    background: #36383C;
+    color: #fff;
+    box-shadow: 0 10px 20px 0 rgb(255, 255, 255, 20%);
+}
+.card.dark .card-header {
+    border-color: rgba(255, 255, 255, 0.125);
+}
+.card.dark .separator {
+    border-color: #fff !important;
+}
+.card.dark .separator p {
+    background: #36383C !important;
 }
 .dropzone {
     border: 4px #ef394e dashed;

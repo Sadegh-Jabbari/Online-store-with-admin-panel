@@ -19,15 +19,14 @@ body.dark {
     width: 60px;
     height: 34px;
     border-radius: 50px;
+    cursor: pointer;
 }
 .toggle-theme input {
     width: 0;
     height: 0;
 }
 .toggle-slider {
-    cursor: pointer;
     border-radius: 50px;
-    z-index: -1;
     transition: 0.4s;
 }
 .toggle-slider:before {
@@ -50,6 +49,7 @@ body.dark {
 }
 .toggle-theme input ~ svg {
     color: #262626 !important;
+    z-index: 1;
 }
 .toggle-theme input:checked ~ svg {
     color: #fff !important;
