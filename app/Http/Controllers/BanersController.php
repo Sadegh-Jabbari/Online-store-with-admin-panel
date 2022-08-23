@@ -41,7 +41,7 @@ class BanersController extends Controller
         $randomNum = $extraController->randomNum();
         $a = $request;
         $media = new medias();
-        if (isset($request->indeximg)) {
+        if (isset($request->media_id)) {
             $file = $request->file('media_id');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = $randomNum . '.' . $extension;
