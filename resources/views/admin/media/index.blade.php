@@ -15,31 +15,41 @@
                         <h5 class="mb-0 text-center"><strong>مدیریت رسانه</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex">
-                            <a href="{{url('/')}}/adm/media/create">
-                                <div class="btn text-white me-3" style="background: #ef394e">
-                                    <i class="fas fa-images"></i>
-                                    <span>افزودن رسانه&zwnj;ی جدید</span>
-                                </div>
+                        <h4 class="fw-bold">رسانه ها</h4>
+                        <div class="my-4">
+                            <a href="{{url('/')}}/adm/media/create" class="btn digi-red text-white w-100">
+                                <i class="fas fa-plus-circle"></i>
+                                افزودن رسانه
                             </a>
-                            <a href="{{url('/')}}/adm/banners/create">
-                                <div class="btn text-white me-3" style="background: #ef394e">
-                                    <i class="fas fa-edit"></i>
-                                    <span>ویرایش رسانه ها</span>
-                                </div>
-                            </a>
-                            <a href="{{url('/')}}/adm/banners/create">
-                                <div class="btn text-white me-3" style="background: #ef394e">
-                                    <i class="fas fa-trash"></i>
-                                    <span>رسانه های حذف شده</span>
-                                </div>
-                            </a>
-                            <a href="{{url('/')}}/adm/banners/create">
-                                <div class="btn text-white" style="background: #ef394e">
-                                    <i class="fas fa-list"></i>
-                                    <span>لیست رسانه ها</span>
-                                </div>
-                            </a>
+                        </div>
+                        <div>
+                            <table class="w-100" style="box-shadow: 0 0 0 2px #ef394e; border-radius: 8px; border-style: hidden">
+                                <thead class="border-bottom border-danger">
+                                <tr>
+                                    <th class="p-2">شماره</th>
+                                    <th class="p-2"><input type="text" placeholder="بنر" class="w-100"></th>
+                                    <th class="p-2 text-center">مدیریت</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="w-25 p-2">1</td>
+                                    <td class="w-50 p-2">
+                                        <div class="w-100 border border-danger">
+                                            <img src="" alt="">
+                                        </div>
+                                    </td>
+                                    <td class="w-25 p-2">
+                                        <div class="d-flex justify-content-evenly">
+                                            <a href="#" class="btn btn-success">ویرایش</a>
+                                            <form action="" method="post">
+                                                <input type="submit" value="حذف" class="btn btn-danger">
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

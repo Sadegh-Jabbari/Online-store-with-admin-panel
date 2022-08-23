@@ -15,6 +15,9 @@ body {
 body.dark {
     background: #1a1a1a;
 }
+.digi-red {
+    background: #ef394e;
+}
 header .search {
     width: 600px;
     height: 44px;
@@ -150,6 +153,9 @@ nav#sidebarMenu .list-group-item.dark {
     color: #fff;
     border-color: rgba(255, 255, 255, 0.125);
 }
+#sidebarMenu .side-dropdown-btn.active + div {
+    display: block !important;
+}
 .card.dark {
     background: #36383C;
     color: #fff;
@@ -186,4 +192,43 @@ nav#sidebarMenu .list-group-item.dark {
 }
 /*.form-btn::-webkit-file-upload-button:hover {*/
 /*    box-shadow: 0 4px 10px 0 rgb(0, 0, 0,20%), 0 4px 20px 0 rgb(0, 0, 0, 10%);*/
+/*}*/
+
+.input-form {
+    display: flex;
+    align-items: center;
+}
+.input-form input {
+    display: none;
+    transition: 2s;
+}
+.input-form input.active-field {
+    display: block;
+    width: 80%;
+    border: none;
+    outline: none;
+    border-right: 5px #ef394e solid;
+    padding: 8px 16px;
+    direction: ltr;
+    background: rgba(239, 57, 78, 0.5);
+}
+.card.dark .input-form input.active-field {
+    background: #fff;
+}
+.input-form-label {
+    width: 100%;
+    transition: 2s;
+}
+.input-form-label.active-field {
+    width: 20%;
+}
+
+/*.input-form label:hover {*/
+/*    color: #ef394e;*/
+/*    text-align: right;*/
+/*    width: 20%;*/
+/*}*/
+/*.input-form label:hover + input {*/
+/*    display: block;*/
+/*    width: 80%;*/
 /*}*/

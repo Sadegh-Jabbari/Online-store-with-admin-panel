@@ -8,6 +8,7 @@
 {{--<script type="text/javascript" src="{{url('/')}}/admin/js/bootstrap.bundle.min.js"></script>--}}
 <script type="text/javascript" src="{{url('/')}}/admin/js/summernote.min.js"></script>
 <script type="text/javascript" src="{{url('/')}}/admin/js/dropzone.min.js"></script>
+<script type="text/javascript" src="{{url('/')}}/admin/js/jquery-ui.js"></script>
 @yield("extrajs")
 <script type="text/javascript" src="{{url('/')}}/admin/js/admin.js"></script>
 

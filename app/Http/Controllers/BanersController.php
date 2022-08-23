@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\baners;
+use App\Models\medias;
 use Illuminate\Http\Request;
 
 class BanersController extends Controller
@@ -36,10 +37,24 @@ class BanersController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('topAdBanner');
-        $extension = $file->getClientOriginalExtension(); // getting image extension
-        $filename =time().'.'.$extension;
-        $file->move('uploads/madias/', $filename);
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
+        $a = $request;
+        $media = new medias();
+        if (isset($request->indeximg)) {
+            $file = $request->file('indeximg');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/', $filename);
+            $finaldes = 'uploads/medias/' . $filename;
+            $a['photo_path'] = $finaldes;
+            $media->photo_path = $a['photo_path'];
+            $media->save();
+            $mediaId = $media->id;
+            $a['media_id'] = $mediaId;
+        }
+        baners::create($a->all());
+        return redirect(route("banners.index"));
     }
 
     /**

@@ -10,7 +10,7 @@ $(document).ready(function() {
         height: 100
     });
 
-    $("[type=file]").text("jvhv");
+    // $("[type=file]").text("jvhv");
 
     // Dark Mode
     $("#dark-mode").on("click", function () {
@@ -31,6 +31,49 @@ $(document).ready(function() {
 
     let path = window.location.href;
     $('[href="' + path + '"]').addClass('active');
+
+    $(".side-dropdown-btn").on("click", function () {
+        $(this).toggleClass("active");
+        if ($(this).hasClass("active")) {
+            $(".side-dropdown-btn").not(this).removeClass("active");
+        }
+    });
+
+    if ($(".side-dropdown-item").attr("href") === path) {
+        let active =  $(".side-dropdown-item[href=" + path + "]");
+        active.parents().css("display", "block");
+    }
+
+
+
+    // let dropdown = $("#sidebarMenu .dropdown");
+    // let i;
+    // for (i = 0; i < dropdown.length; i++) {
+    //     dropdown[i].on("click", function () {
+    //         $(this).toggleClass("active");
+    //         let dropdownContent = $(this).nextElementSibling;
+    //         if (dropdownContent.css("display") === "block") {
+    //             dropdownContent.css("display", "none");
+    //         } else {
+    //             dropdownContent.css("display", "block");
+    //         }
+    //     });
+    // }
+
+    // let dropdown = $("#sidebarMenu .dropdown");
+    // let i;
+    //
+    // for (i = 0; i < dropdown.length; i++) {
+    //     dropdown[i].addEventListener("click", function() {
+    //         this.classList.toggle("active");
+    //         let dropdownContent = this.nextElementSibling;
+    //         if (dropdownContent.style.display === "block") {
+    //             dropdownContent.style.display = "none";
+    //         } else {
+    //             dropdownContent.style.display = "block";
+    //         }
+    //     });
+    // }
 });
 
 // const current_location = location.href;
