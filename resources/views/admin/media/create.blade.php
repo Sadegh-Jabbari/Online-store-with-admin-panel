@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <p class="fw-bold"> رسانه جدید</p>
-                        <form action="{{route("banners.store")}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route("media.store")}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             {{--                            <select name="banner" id="baner">--}}
                             {{--                                <option value="media_id"></option>--}}
@@ -41,7 +41,8 @@
                                    style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
                                     افزودن عکس
                                 </p>
-                            </div>                            <label for="indeximg" class="btn digi-red text-white w-100">بارگذاری عکس</label>
+                            </div>
+                            <label for="indeximg" class="btn digi-red text-white w-100">بارگذاری عکس</label>
                             <input type="file" name="indeximg" id="indeximg" class="d-none">
                             <div class="d-flex justify-content-center mt-4">
                                 <button type="submit" class="btn text-white me-3" style="background: #ef394e; width: 15%">ثبت</button>

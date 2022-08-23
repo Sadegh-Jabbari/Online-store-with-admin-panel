@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('baners', function (Blueprint $table) {
             $table->id();
+            $table->string("banner_uri");
+            $table->string("banner_name");
             $table->string("media_id");
             $table->timestamps();
         });

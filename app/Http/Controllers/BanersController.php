@@ -42,7 +42,7 @@ class BanersController extends Controller
         $a = $request;
         $media = new medias();
         if (isset($request->indeximg)) {
-            $file = $request->file('indeximg');
+            $file = $request->file('media_id');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = $randomNum . '.' . $extension;
             $file->move('uploads/medias/', $filename);
