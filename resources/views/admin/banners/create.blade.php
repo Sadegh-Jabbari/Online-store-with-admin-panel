@@ -51,22 +51,16 @@
                     </div>
 
                     <!-- Modal Box -->
-                    <div class="position-absolute top-0 bottom-0 w-100 h-100 bg-white" id="modal-box" style="z-index: 100;border: 3px solid #0c0c0c; border-radius: 16px; box-shadow: 0px 20px 10px 10px rgba(0, 0, 0, 50%);transition: 1s; display: none">
+                    <div class="position-absolute top-0 bottom-0 w-100 h-100" id="modal-box" style="z-index: 100;border: 3px solid #0c0c0c; border-radius: 16px; box-shadow: 0px 20px 10px 10px rgba(0, 0, 0, 50%);transition: 1s; display: none">
                         <div class="d-flex justify-content-end p-2 bg-white" style="border-bottom: 2px solid crimson; border-radius: 16px 16px 0 0">
                             <button class="btn-close close-modal"></button>
                         </div>
-                        <div class="d-grid h-75 overflow-auto" style="grid-template-columns: auto auto auto auto auto;background: rgba(239, 57, 78, 0.5); border-bottom: 2px solid crimson">
-{{--                            @foreach ($firstMedias as $medias)--}}
-{{--                                <div class="col">--}}
-{{--                                    <img src="{{url('/')}}/{{$medias->photo_path}}" alt="{{$medias->photo_alt}}" class="modal-image" photoId="{{$medias->id}}">--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-                            <div class="my-2 mx-1" style="min-height: 200px; border: 2px solid crimson"></div>
-                            <div class="my-2 mx-1" style="min-height: 200px; border: 2px solid crimson"></div>
-                            <div class="my-2 mx-1" style="min-height: 200px; border: 2px solid crimson"></div>
-                            <div class="my-2 mx-1" style="min-height: 200px; border: 2px solid crimson"></div>
-                            <div class="my-2 mx-1" style="min-height: 200px; border: 2px solid crimson"></div>
-                            <div class="my-2 mx-1" style="min-height: 200px; border: 2px solid crimson"></div>
+                        <div class="d-flex h-75 overflow-auto" style="grid-template-columns: auto auto auto auto auto;background: rgba(78, 78, 78, 0.78); border-bottom: 2px solid crimson">
+                            @foreach($media as $item)
+                            <div class="my-2 mx-1" style="width: 200px; height: 200px; border: 2px solid crimson">
+                                <img src="{{url('/')}}/{{$item->photo_path}}" alt="{{$item->photo_alt}}" photoId="{{$item->id}}" class="w-100" style="height: -webkit-fill-available">
+                            </div>
+                            @endforeach
                         </div>
                         <div class="d-flex justify-content-center py-2 bg-white" style="border-radius: 0 0 16px 16px">
                             <button type="button" class="btn text-white me-3" style="background: #ef394e; width: 20%">مشاهده عکس های بیشتر</button>

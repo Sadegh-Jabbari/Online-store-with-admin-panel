@@ -19,6 +19,6 @@ class medias extends Model
 
     public function banners()
     {
-        return $this->hasMany(BanersController::class);
+        return $this->hasMany(baners::class);
     }
 }

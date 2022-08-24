@@ -31,14 +31,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($banners as $item)
+                                    @php
+                                        $bannerID = $item->id;
+                                        $mediaId =  App\Models\medias::find($bannerID);
+                                        $src = $mediaId->photo_path;
+                                        $alt = $mediaId->photo_alt;
+                                    @endphp
                                     <tr>
-                                        <td class="w-25 p-2">1</td>
+                                        <td class="p-2" style="width: 5%">{{$item->id}}</td>
                                         <td class="w-50 p-2">
-                                            <div class="w-100 border border-danger">
-                                                <img src="" alt="">
+                                            <div class="w-100 border border-dark" style="max-height: 200px">
+                                                <img src="{{url('/')}}/{{$src}}" alt="{{$item->banner_name}}" class="w-100" style="max-height: 198px; object-fit: contain">
                                             </div>
                                         </td>
-                                        <td class="w-25 p-2">
+                                        <td class="p-2" style="width: 10%">
                                             <div class="d-flex justify-content-evenly">
                                                 <a href="#" class="btn btn-success">ویرایش</a>
                                                 <form action="" method="post">
@@ -47,6 +54,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -15,7 +15,8 @@ class BanersController extends Controller
      */
     public function index()
     {
-        return view('admin.banners.index');
+        $banners = baners::all();
+        return view('admin.banners.index', compact("banners"));
 
     }
 
@@ -26,7 +27,8 @@ class BanersController extends Controller
      */
     public function create()
     {
-        return view('admin.banners.create');
+        $media = medias::limit(10)->get();
+        return view('admin.banners.create', compact("media"));
     }
 
     /**
