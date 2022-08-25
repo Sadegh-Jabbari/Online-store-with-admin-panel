@@ -1,8 +1,43 @@
 @extends('admin.layouts.master')
 @section("extracss")
-
-
-
+    <style>
+        .separator p {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .w-15 {
+            width: 15%;
+        }
+        .modal-box {
+            border: 3px solid #0c0c0c;
+            border-radius: 8px;
+            box-shadow: 0px 20px 10px 10px rgba(0, 0, 0, 50%);
+            transition: 1s;
+            display: none;
+        }
+        .modal-header {
+            border-bottom: 2px solid #ed143d;
+            height: 10%;
+        }
+        .modal-main {
+            background: rgba(78, 78, 78, 0.78);
+            border-bottom: 2px solid #ed143d;
+            height: 75%;
+        }
+        .modal-main div {
+            width: 200px; height: 200px; border: 2px solid #ed143d;
+        }
+        .modal-main div img {
+            height: -webkit-fill-available;
+        }
+        .modal-footer {
+            height: 15%;
+        }
+        .modal-footer button {
+            width: 20%;
+        }
+    </style>
 @endsection
 @section("main")
     <main style="margin-top: 58px">
@@ -27,12 +62,11 @@
                                 <input type="text" name="banner_uri" id="banner_uri">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="banner_name" class="input-form-label btn digi-red text-white">عنوان بنر</label>
+                                <label for="banner_name" class="input-form-label btn digi-red text-white">متن جایگزین</label>
                                 <input type="text" name="banner_name" id="banner_name">
                             </div>
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
-                                <p class="fw-bold position-absolute m-0 px-5 bg-white"
-                                   style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                                <p class="fw-bold position-absolute m-0 px-5 bg-white">
                                     افزودن عکس
                                 </p>
                             </div>
@@ -40,8 +74,8 @@
                             <label for="media_id" class="btn digi-red text-white w-100">بارگذاری عکس</label>
                             <input type="file" name="media_id" id="media_id" class="d-none">
                             <div class="d-flex justify-content-center mt-4">
-                                <button type="submit" class="btn text-white me-3" style="background: #ef394e; width: 15%">ثبت</button>
-                                <button type="reset" class="btn text-white" style="background: #ef394e; width: 15%">بازنشانی</button>
+                                <button type="submit" class="btn digi-red text-white me-3 w-15">ثبت</button>
+                                <button type="reset" class="btn digi-red text-white w-15">بازنشانی</button>
                             </div>
                         </form>
 {{--                        <form action="{{url("/")}}/adm/banners" class="dropzone" id="my-awesome-dropzone"--}}
@@ -51,20 +85,20 @@
                     </div>
 
                     <!-- Modal Box -->
-                    <div class="position-absolute top-0 bottom-0 w-100 h-100" id="modal-box" style="z-index: 100;border: 3px solid #0c0c0c; border-radius: 16px; box-shadow: 0px 20px 10px 10px rgba(0, 0, 0, 50%);transition: 1s; display: none">
-                        <div class="d-flex justify-content-end p-2 bg-white" style="border-bottom: 2px solid crimson; border-radius: 16px 16px 0 0">
+                    <div class="modal-box position-absolute top-0 bottom-0 w-100 h-100 overflow-hidden" id="modal-box">
+                        <div class="modal-header d-flex justify-content-end p-2 bg-white">
                             <button class="btn-close close-modal"></button>
                         </div>
-                        <div class="d-flex h-75 overflow-auto" style="grid-template-columns: auto auto auto auto auto;background: rgba(78, 78, 78, 0.78); border-bottom: 2px solid crimson">
+                        <div class="modal-main d-flex overflow-auto">
                             @foreach($media as $item)
-                            <div class="my-2 mx-1" style="width: 200px; height: 200px; border: 2px solid crimson">
-                                <img src="{{url('/')}}/{{$item->photo_path}}" alt="{{$item->photo_alt}}" photoId="{{$item->id}}" class="w-100" style="height: -webkit-fill-available">
+                            <div class="my-2 mx-1">
+                                <img src="{{url('/')}}/{{$item->photo_path}}" alt="{{$item->photo_alt}}" photoId="{{$item->id}}" class="w-100">
                             </div>
                             @endforeach
                         </div>
-                        <div class="d-flex justify-content-center py-2 bg-white" style="border-radius: 0 0 16px 16px">
-                            <button type="button" class="btn text-white me-3" style="background: #ef394e; width: 20%">مشاهده عکس های بیشتر</button>
-                            <button type="button" class="close-modal btn text-white" style="background: #ef394e; width: 20%">بستن</button>
+                        <div class="modal-footer d-flex justify-content-center py-2 bg-white">
+                            <button type="button" class="btn digi-red text-white me-3">مشاهده عکس های بیشتر</button>
+                            <button type="button" class="close-modal btn digi-red text-white">بستن</button>
                         </div>
                     </div>
                 </div>

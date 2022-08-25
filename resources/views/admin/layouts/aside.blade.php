@@ -34,6 +34,10 @@
                 <i class="fas fa-caret-down"></i>
             </button>
             <div class="side-dropdown-content ps-3" style="background: #f5f5f5; display: none">
+                <a href="{{url('/')}}/adm/sliders" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
+                    <i class="fas fa-border-all me-3"></i>
+                    همه اسلایدر ها
+                </a>
                 <a href="{{url('/')}}/adm/sliders/create" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
                     <i class="fas fa-edit me-3"></i>
                     افزودن عکس به اسلایدر

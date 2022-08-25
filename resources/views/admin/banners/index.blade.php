@@ -1,8 +1,12 @@
 @extends('admin.layouts.master')
 @section("extracss")
-
-
-
+    <style>
+        table {
+            box-shadow: 0 0 0 2px #ef394e;
+            border-radius: 8px;
+            border-style: hidden;
+        }
+    </style>
 @endsection
 @section("main")
     <main style="margin-top: 58px">
@@ -22,12 +26,12 @@
                             </a>
                         </div>
                         <div>
-                            <table class="w-100" style="box-shadow: 0 0 0 2px #ef394e; border-radius: 8px; border-style: hidden">
+                            <table class="w-100">
                                 <thead class="border-bottom border-danger">
                                     <tr>
-                                        <th class="p-2">شماره</th>
+                                        <th class="p-2 text-center" style="width: 5%">ردیف</th>
                                         <th class="p-2"><input type="text" placeholder="بنر" class="w-100"></th>
-                                        <th class="p-2 text-center">مدیریت</th>
+                                        <th class="p-2 text-center" style="width: 10%">مدیریت</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,13 +43,15 @@
                                         $alt = $mediaId->photo_alt;
                                     @endphp
                                     <tr>
-                                        <td class="p-2" style="width: 5%">{{$item->id}}</td>
+                                        <td class="p-2 text-center">
+                                            <p class="m-0">{{$item->id}}</p>
+                                        </td>
                                         <td class="w-50 p-2">
                                             <div class="w-100 border border-dark" style="max-height: 200px">
                                                 <img src="{{url('/')}}/{{$src}}" alt="{{$item->banner_name}}" class="w-100" style="max-height: 198px; object-fit: contain">
                                             </div>
                                         </td>
-                                        <td class="p-2" style="width: 10%">
+                                        <td class="p-2">
                                             <div class="d-flex justify-content-evenly">
                                                 <a href="#" class="btn btn-success">ویرایش</a>
                                                 <form action="" method="post">

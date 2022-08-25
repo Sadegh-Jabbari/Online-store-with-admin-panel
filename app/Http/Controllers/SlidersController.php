@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\admin\sliders;
+use App\Models\medias;
 use Illuminate\Http\Request;
 
 class SlidersController extends Controller
@@ -14,7 +15,8 @@ class SlidersController extends Controller
      */
     public function index()
     {
-        return view('admin.sliders.index');
+        $sliders = sliders::all();
+        return view('admin.sliders.index', compact('sliders'));
     }
 
     /**
@@ -24,7 +26,8 @@ class SlidersController extends Controller
      */
     public function create()
     {
-        return view('admin.sliders.create');
+        $media = medias::limit(10)->get();
+        return view('admin.sliders.create', compact('media'));
     }
 
     /**
@@ -35,7 +38,24 @@ class SlidersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
+        $a = $request;
+        $media = new medias();
+        if (isset($request->media_id)) {
+            $file = $request->file('media_id');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/', $filename);
+            $finaldes = 'uploads/medias/' . $filename;
+            $a['photo_path'] = $finaldes;
+            $media->photo_path = $a['photo_path'];
+            $media->save();
+            $mediaId = $media->id;
+            $a['media_id'] = $mediaId;
+        }
+        sliders::create($a->all());
+        return redirect(route("sliders.index"));
     }
 
     /**
