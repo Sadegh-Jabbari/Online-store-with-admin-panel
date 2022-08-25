@@ -14,7 +14,8 @@ class MediasController extends Controller
      */
     public function index()
     {
-        return view('admin.media.index');
+        $medias = medias::all();
+        return view('admin.media.index', compact('medias'));
     }
 
     /**
@@ -35,47 +36,66 @@ class MediasController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('indeximg');
-        $extension = $file->getClientOriginalExtension(); // getting image extension
-        $filename =$this->randomNum() .'.'.$extension;
-        $file->move('uploads/medias/', $filename);
-        $finaldes = 'uploads/medias/'.$filename;
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
         $a = $request;
-        $a['photo_path']=$finaldes;
-        // unset($a['ImgP']);
-
-
+        $media = new medias();
+        if (isset($request->media_id)) {
+            $file = $request->file('media_id');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/', $filename);
+            $finaldes = 'uploads/medias/' . $filename;
+            $a['photo_path'] = $finaldes;
+            $media->photo_path = $a['photo_path'];
+            $media->save();
+            $mediaId = $media->id;
+            $a['media_id'] = $mediaId;
+        }
         medias::create($a->all());
         return redirect(route("media.index"));
-    }
-    public function randomNum(){
-        $first = rand(1,100);
-        $sec = rand(100,1000);
-        $final = rand($first,$sec);
-        $alafabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-        $alfabetsize = intval(count($alafabet)-1);
-        $alfrand = rand(0,$alfabetsize);
 
-        $alf = $alafabet[$alfrand];
-        $alfrand = rand(0,$alfabetsize);
-        $alf = strval($alf).$alafabet[$alfrand];
-        $alfrand = rand(0,$alfabetsize);
-        $alf = strval($alf).strval($alafabet[$alfrand]);
-        return strval($final) . "-".$alf."-". strval(time());
+//        $file = $request->file('indeximg');
+//        $extension = $file->getClientOriginalExtension(); // getting image extension
+//        $filename =$this->randomNum() .'.'.$extension;
+//        $file->move('uploads/medias/', $filename);
+//        $finaldes = 'uploads/medias/'.$filename;
+//        $a = $request;
+//        $a['photo_path']=$finaldes;
+//        // unset($a['ImgP']);
+//
+//
+//        medias::create($a->all());
+//        return redirect(route("media.index"));
     }
-    public function dropMedia(Request $request){
-        $file = $request->file('file');
-        $extension = $file->getClientOriginalExtension(); // getting image extension
-        $filename =$this->randomNum() .'.'.$extension;
-        $file->move('uploads/medias/', $filename);
-        $finaldes = 'uploads/medias/'.$filename;
-        $a = $request;
-        $a['photo_path']=$finaldes;
-        $media = new medias;
-        $media->photo_path = $a['photo_path'];
-        $media->save();
-        return "done";
-    }
+//    public function randomNum(){
+//        $first = rand(1,100);
+//        $sec = rand(100,1000);
+//        $final = rand($first,$sec);
+//        $alafabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+//        $alfabetsize = intval(count($alafabet)-1);
+//        $alfrand = rand(0,$alfabetsize);
+//
+//        $alf = $alafabet[$alfrand];
+//        $alfrand = rand(0,$alfabetsize);
+//        $alf = strval($alf).$alafabet[$alfrand];
+//        $alfrand = rand(0,$alfabetsize);
+//        $alf = strval($alf).strval($alafabet[$alfrand]);
+//        return strval($final) . "-".$alf."-". strval(time());
+//    }
+//    public function dropMedia(Request $request){
+//        $file = $request->file('file');
+//        $extension = $file->getClientOriginalExtension(); // getting image extension
+//        $filename =$this->randomNum() .'.'.$extension;
+//        $file->move('uploads/medias/', $filename);
+//        $finaldes = 'uploads/medias/'.$filename;
+//        $a = $request;
+//        $a['photo_path']=$finaldes;
+//        $media = new medias;
+//        $media->photo_path = $a['photo_path'];
+//        $media->save();
+//        return "done";
+//    }
 
     /**
      * Display the specified resource.

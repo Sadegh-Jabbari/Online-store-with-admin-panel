@@ -26,28 +26,38 @@
                             <table class="w-100" style="box-shadow: 0 0 0 2px #ef394e; border-radius: 8px; border-style: hidden">
                                 <thead class="border-bottom border-danger">
                                 <tr>
-                                    <th class="p-2">شماره</th>
-                                    <th class="p-2"><input type="text" placeholder="بنر" class="w-100"></th>
-                                    <th class="p-2 text-center">مدیریت</th>
+                                    <th class="p-2 text-center" style="width: 5%">ردیف</th>
+                                    <th class="p-2"><input type="text" placeholder="رسانه" class="w-100"></th>
+                                    <th class="p-2 text-center" style="width: 10%">مدیریت</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="w-25 p-2">1</td>
-                                    <td class="w-50 p-2">
-                                        <div class="w-100 border border-danger">
-                                            <img src="" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="w-25 p-2">
-                                        <div class="d-flex justify-content-evenly">
-                                            <a href="#" class="btn btn-success">ویرایش</a>
-                                            <form action="" method="post">
-                                                <input type="submit" value="حذف" class="btn btn-danger">
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach($medias as $item)
+                                    @php
+                                        $mediaID = $item->id;
+                                        $mediaId =  App\Models\medias::find($mediaID);
+                                        $src = $mediaId->photo_path;
+                                        $alt = $mediaId->photo_alt;
+                                    @endphp
+                                    <tr>
+                                        <td class="p-2 text-center">
+                                            <p class="m-0">{{$item->id}}</p>
+                                        </td>
+                                        <td class="w-50 p-2">
+                                            <div class="w-100 border border-dark" style="max-height: 200px">
+                                                <img src="{{url('/')}}/{{$src}}" alt="{{$alt}}" class="w-100" style="max-height: 198px; object-fit: contain">
+                                            </div>
+                                        </td>
+                                        <td class="p-2">
+                                            <div class="d-flex justify-content-evenly">
+                                                <a href="#" class="btn btn-success">ویرایش</a>
+                                                <form action="" method="post">
+                                                    <input type="submit" value="حذف" class="btn btn-danger">
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

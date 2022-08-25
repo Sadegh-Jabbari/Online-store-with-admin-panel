@@ -18,23 +18,17 @@
                         <p class="fw-bold"> رسانه جدید</p>
                         <form action="{{route("media.store")}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{--                            <select name="banner" id="baner">--}}
-                            {{--                                <option value="media_id"></option>--}}
-                            {{--                            </select>--}}
-                            {{--                            <p> عکس جدید برای بنر</p>--}}
-                            {{--                            <input type="file" name="topAdBanner">--}}
-                            {{--                            <input type="submit" value="ثبت">--}}
                             <div class="input-form mb-2 w-100">
-                                <label for="banner_uri" class="input-form-label btn digi-red text-white">عنوان عکس</label>
-                                <input type="text" name="banner_uri" id="banner_uri">
+                                <label for="photo_name" class="input-form-label btn digi-red text-white">عنوان عکس</label>
+                                <input type="text" name="photo_name" id="photo_name">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="banner_name" class="input-form-label btn digi-red text-white">متن جایگزین</label>
-                                <input type="text" name="banner_name" id="banner_name">
+                                <label for="photo_alt" class="input-form-label btn digi-red text-white">متن جایگزین</label>
+                                <input type="text" name="photo_alt" id="photo_alt">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="banner_name" class="input-form-label btn digi-red text-white">توضیحات</label>
-                                <input type="text" name="banner_name" id="banner_name">
+                                <label for="photo_descript" class="input-form-label btn digi-red text-white">توضیحات</label>
+                                <input type="text" name="photo_descript" id="photo_descript">
                             </div>
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
                                 <p class="fw-bold position-absolute m-0 px-5 bg-white"
@@ -42,8 +36,8 @@
                                     افزودن عکس
                                 </p>
                             </div>
-                            <label for="indeximg" class="btn digi-red text-white w-100">بارگذاری عکس</label>
-                            <input type="file" name="indeximg" id="indeximg" class="d-none">
+                            <label for="media_id" class="btn digi-red text-white w-100">بارگذاری عکس</label>
+                            <input type="file" name="media_id" id="media_id" class="d-none">
                             <div class="d-flex justify-content-center mt-4">
                                 <button type="submit" class="btn text-white me-3" style="background: #ef394e; width: 15%">ثبت</button>
                                 <button type="reset" class="btn text-white" style="background: #ef394e; width: 15%">بازنشانی</button>

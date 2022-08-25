@@ -46,8 +46,8 @@ class SlidersController extends Controller
             $file = $request->file('media_id');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = $randomNum . '.' . $extension;
-            $file->move('uploads/medias/', $filename);
-            $finaldes = 'uploads/medias/' . $filename;
+            $file->move('uploads/medias/sliders/', $filename);
+            $finaldes = 'uploads/medias/sliders/' . $filename;
             $a['photo_path'] = $finaldes;
             $media->photo_path = $a['photo_path'];
             $media->save();

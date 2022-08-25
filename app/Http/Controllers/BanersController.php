@@ -47,8 +47,8 @@ class BanersController extends Controller
             $file = $request->file('media_id');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = $randomNum . '.' . $extension;
-            $file->move('uploads/medias/', $filename);
-            $finaldes = 'uploads/medias/' . $filename;
+            $file->move('uploads/medias/banners/', $filename);
+            $finaldes = 'uploads/medias/banners/' . $filename;
             $a['photo_path'] = $finaldes;
             $media->photo_path = $a['photo_path'];
             $media->save();
