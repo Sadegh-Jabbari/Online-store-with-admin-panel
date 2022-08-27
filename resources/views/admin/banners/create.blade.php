@@ -71,8 +71,8 @@
                                 </p>
                             </div>
                             <button type="button" class="btn digi-red text-white w-100 mb-2" id="select-img">انتخاب عکس</button>
-                            <label for="media_id" class="btn digi-red text-white w-100">بارگذاری عکس</label>
-                            <input type="file" name="media_id" id="media_id" class="d-none">
+                            <label for="index" class="btn digi-red text-white w-100">بارگذاری عکس</label>
+                            <input type="file" name="index" id="index" class="d-none">
                             <div class="d-flex justify-content-center mt-4">
                                 <button type="submit" class="btn digi-red text-white me-3 w-15">ثبت</button>
                                 <button type="reset" class="btn digi-red text-white w-15">بازنشانی</button>

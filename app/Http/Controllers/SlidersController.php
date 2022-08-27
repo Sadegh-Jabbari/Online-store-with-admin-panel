@@ -42,8 +42,8 @@ class SlidersController extends Controller
         $randomNum = $extraController->randomNum();
         $a = $request;
         $media = new medias();
-        if (isset($request->media_id)) {
-            $file = $request->file('media_id');
+        if (isset($request->index)) {
+            $file = $request->file('index');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = $randomNum . '.' . $extension;
             $file->move('uploads/medias/sliders/', $filename);

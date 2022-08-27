@@ -35,7 +35,7 @@ class NavsController extends Controller
      */
     public function store(Request $request)
     {
-        return view('admin.navs.index');
+
     }
 
     /**

@@ -17,8 +17,8 @@
                         <form action="{{url("/")}}/adm/navs" method="POST">
                             @csrf
                             <div class="d-flex mb-2">
-                                <label for="url" class="w-25">عنوان منو اختصاصی</label>
-                                <input type="text" name="url" id="url" class="w-75">
+                                <label for="nav_url" class="w-25">عنوان منو اختصاصی</label>
+                                <input type="text" name="nav_url" id="nav_url" class="w-75">
                             </div>
                             <div class="d-flex mb-2">
                                 <label for="nav_name" class="w-25">اسم منو</label>

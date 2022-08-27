@@ -39,7 +39,7 @@
                                 <tbody>
                                 @foreach($sliders as $item)
                                     @php
-                                        $sliderID = $item->id;
+                                        $sliderID = $item->media_id;
                                         $mediaId =  App\Models\medias::find($sliderID);
                                         $src = $mediaId->photo_path;
                                         $alt = $mediaId->photo_alt;
