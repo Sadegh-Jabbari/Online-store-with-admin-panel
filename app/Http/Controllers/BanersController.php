@@ -76,9 +76,11 @@ class BanersController extends Controller
      * @param  \App\Models\baners  $baners
      * @return \Illuminate\Http\Response
      */
-    public function edit(baners $baners)
+    public function edit(baners $baners, $bannerID)
     {
-        //
+        $banner = $baners::find($bannerID);
+        $media = medias::all();
+        return view('admin.banners.edit', compact('banner','media'));
     }
 
     /**
@@ -88,9 +90,34 @@ class BanersController extends Controller
      * @param  \App\Models\baners  $baners
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, baners $baners)
+    public function update(Request $request, baners $baners, $id)
     {
-        //
+        $banner = $baners::find($id);
+        $bannerID = $banner->media_id;
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
+        $a = $request;
+        $media = new medias();
+        $find_photo = $media::find($bannerID);
+        $photo_path = $find_photo->photo_path;
+//        dd($photo_path);
+        if (isset($request->index)) {
+            if (file_exists($photo_path)) {
+                unlink($photo_path);
+            }
+            $file = $request->file('index');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/banners/', $filename);
+            $finaldes = 'uploads/medias/banners/' . $filename;
+            $a['photo_path'] = $finaldes;
+            $media->photo_path = $a['photo_path'];
+            $media->save();
+            $mediaId = $media->id;
+            $a['media_id'] = $mediaId;
+        }
+        $banner->update($a->all());
+        return redirect(route("banners.index"));
     }
 
     /**

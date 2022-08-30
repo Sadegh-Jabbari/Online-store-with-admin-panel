@@ -14,7 +14,8 @@ class NavsController extends Controller
      */
     public function index()
     {
-        return view('admin.navs.index');
+        $navs = navs::all();
+        return view('admin.navs.index', compact("navs"));
     }
 
     /**
@@ -24,7 +25,8 @@ class NavsController extends Controller
      */
     public function create()
     {
-        return view('admin.navs.create');
+        $navs = navs::all();
+        return view('admin.navs.create', compact("navs"));
     }
 
     /**
@@ -35,7 +37,9 @@ class NavsController extends Controller
      */
     public function store(Request $request)
     {
-
+        $navs = new navs();
+        navs::create($request->all());
+        return redirect(route("navs.index"));
     }
 
     /**

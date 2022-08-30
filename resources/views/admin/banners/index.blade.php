@@ -37,7 +37,7 @@
                                 <tbody>
                                 @foreach($banners as $item)
                                     @php
-                                        $bannerID = $item->id;
+                                        $bannerID = $item->media_id;
                                         $mediaId =  App\Models\medias::find($bannerID);
                                         $src = $mediaId->photo_path;
                                         $alt = $mediaId->photo_alt;
@@ -53,7 +53,7 @@
                                         </td>
                                         <td class="p-2">
                                             <div class="d-flex justify-content-evenly">
-                                                <a href="#" class="btn btn-success">ویرایش</a>
+                                                <a href="{{route("banners.edit", $item->id)}}" class="btn btn-success">ویرایش</a>
                                                 <form action="" method="post">
                                                     <input type="submit" value="حذف" class="btn btn-danger">
                                                 </form>
