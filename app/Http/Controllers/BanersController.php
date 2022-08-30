@@ -126,8 +126,17 @@ class BanersController extends Controller
      * @param  \App\Models\baners  $baners
      * @return \Illuminate\Http\Response
      */
-    public function destroy(baners $baners)
+    public function destroy(baners $baners, $id)
     {
-        //
+        $banner = $baners::find($id);
+        $bannerID = $banner->media_id;
+        $media = new medias();
+        $find_photo = $media::find($bannerID);
+        $photo_path = $find_photo->photo_path;
+        if (file_exists($photo_path)) {
+            unlink($photo_path);
+        }
+        $banner->destroy($id);
+        return redirect(route("banners.index"));
     }
 }

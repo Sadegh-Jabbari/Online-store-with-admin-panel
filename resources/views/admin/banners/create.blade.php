@@ -12,7 +12,7 @@
         .modal-box {
             border: 3px solid #0c0c0c;
             border-radius: 8px;
-            box-shadow: 0px 20px 10px 10px rgba(0, 0, 0, 50%);
+            box-shadow: 0 20px 10px 10px rgba(0, 0, 0, 50%);
             transition: 1s;
             display: none;
         }
@@ -58,11 +58,11 @@
 {{--                            <input type="file" name="topAdBanner">--}}
 {{--                            <input type="submit" value="ثبت">--}}
                             <div class="input-form mb-2 w-100">
-                                <label for="banner_uri" class="input-form-label btn digi-red text-white">عنوان انگلیسی</label>
+                                <label for="banner_uri" id="banner_uri" class="input-form-label btn digi-red text-white">عنوان انگلیسی</label>
                                 <input type="text" name="banner_uri" id="banner_uri">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="banner_name" class="input-form-label btn digi-red text-white">متن جایگزین</label>
+                                <label for="banner_name" id="banner_name" class="input-form-label btn digi-red text-white">متن جایگزین</label>
                                 <input type="text" name="banner_name" id="banner_name">
                             </div>
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
@@ -114,19 +114,19 @@
 @section("extrajs")
     <script>
         $(document).ready(function(){
-            $(".input-form-label").on("click", function(){
-                $(this).removeClass("btn");
-                $(this).removeClass("digi-red");
-                $(this).removeClass("text-white");
+            $("#banner_uri").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
                 $(this).addClass("active-field");
-                $(".input-form input").addClass("active-field");
+                $("input#banner_uri").addClass("active-field");
+            });
+            $("#banner_name").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
+                $(this).addClass("active-field");
+                $("input#banner_name").addClass("active-field");
             });
             $("[type=reset]").on("click", function(){
-                $(".input-form-label").addClass("btn");
-                $(".input-form-label").addClass("digi-red");
-                $(".input-form-label").addClass("text-white");
-                $(".input-form-label").removeClass("active-field");
-                $(".input-form input").removeClass("active-field");
+                $(".input-form-label").addClass("btn digi-red text-white");
+                $(".input-form-label, .input-form input").removeClass("active-field");
             });
             $("#select-img").on("click", function () {
                 $("#modal-box").css("display", "block");

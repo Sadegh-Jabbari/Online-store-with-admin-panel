@@ -15,7 +15,7 @@
         .modal-box {
             border: 3px solid #0c0c0c;
             border-radius: 8px;
-            box-shadow: 0px 20px 10px 10px rgba(0, 0, 0, 50%);
+            box-shadow: 0 20px 10px 10px rgba(0, 0, 0, 50%);
             transition: 1s;
             display: none;
         }
@@ -64,7 +64,7 @@
                                 <input type="text" name="banner_name" id="banner_name" class="active-field" value="{{$banner->banner_name}}">
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <p class="w-20 m-0">عکس فعلی:</p>
+                                <p class="w-20 m-0 py-2">عکس فعلی:</p>
                                 @php
                                     $bannerID = $banner->media_id;
                                     $mediaId =  App\Models\medias::find($bannerID);
@@ -119,20 +119,6 @@
 @section("extrajs")
     <script>
         $(document).ready(function(){
-            $(".input-form-label").on("click", function(){
-                $(this).removeClass("btn");
-                $(this).removeClass("digi-red");
-                $(this).removeClass("text-white");
-                $(this).addClass("active-field");
-                $(".input-form input").addClass("active-field");
-            });
-            $("[type=reset]").on("click", function(){
-                $(".input-form-label").addClass("btn");
-                $(".input-form-label").addClass("digi-red");
-                $(".input-form-label").addClass("text-white");
-                $(".input-form-label").removeClass("active-field");
-                $(".input-form input").removeClass("active-field");
-            });
             $("#select-img").on("click", function () {
                 $("#modal-box").css("display", "block");
             });

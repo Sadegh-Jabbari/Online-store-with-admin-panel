@@ -54,7 +54,9 @@
                                         <td class="p-2">
                                             <div class="d-flex justify-content-evenly">
                                                 <a href="{{route("banners.edit", $item->id)}}" class="btn btn-success">ویرایش</a>
-                                                <form action="" method="post">
+                                                <form action="{{route("banners.destroy", $item->id)}}" method="post">
+                                                    @csrf
+                                                    @method("DELETE")
                                                     <input type="submit" value="حذف" class="btn btn-danger">
                                                 </form>
                                             </div>
