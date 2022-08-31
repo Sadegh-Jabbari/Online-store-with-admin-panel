@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categoriesMenu;
 use App\Models\navs;
+use App\Models\subMenu;
 use Illuminate\Http\Request;
 
 class NavsController extends Controller
@@ -15,7 +17,9 @@ class NavsController extends Controller
     public function index()
     {
         $navs = navs::all();
-        return view('admin.navs.index', compact("navs"));
+        $catMenu = categoriesMenu::all();
+        $subMenu = subMenu::all();
+        return view('admin.navs.index', compact("navs", "catMenu", "subMenu"));
     }
 
     /**
@@ -26,7 +30,8 @@ class NavsController extends Controller
     public function create()
     {
         $navs = navs::all();
-        return view('admin.navs.create', compact("navs"));
+        $catMenu = categoriesMenu::all();
+        return view('admin.navs.create', compact("navs", "catMenu"));
     }
 
     /**
@@ -38,7 +43,11 @@ class NavsController extends Controller
     public function store(Request $request)
     {
         $navs = new navs();
+        $catMenu = new categoriesMenu();
+        $subMenu = new  subMenu();
         navs::create($request->all());
+        categoriesMenu::create($request->all());
+        subMenu::create($request->all());
         return redirect(route("navs.index"));
     }
 

@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('navs', function (Blueprint $table) {
+        Schema::create('sub_menus', function (Blueprint $table) {
             $table->id();
-            $table->string("main_nav_url")->nullable();
-            $table->string("main_nav_name")->nullable();
-            $table->integer("hasMegaMenu")->nullable();
+            $table->string("sub_nav_title")->nullable();
+            $table->string("sub_nav_url")->nullable();
+            $table->integer("main_branch")->nullable();
+            $table->integer("father_id")->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('navs');
+        Schema::dropIfExists('sub_menus');
     }
 };

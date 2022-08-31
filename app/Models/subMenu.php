@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class navs extends Model
+class subMenu extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'main_nav_url',
-        'main_nav_name',
-        'hasMegaMenu',
+        'sub_nav_title',
+        'sub_nav_url',
+        'main_branch',
+        'father_id',
     ];
-}{
-}{
 }

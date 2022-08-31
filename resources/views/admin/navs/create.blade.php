@@ -67,7 +67,7 @@
                                     @foreach($navs as $item)
                                         @php
                                             $nav_id = $item->id;
-                                            $nav_name = $item->nav_name;
+                                            $nav_name = $item->main_nav_name;
                                         @endphp
                                         <option value="{{$nav_id}}">
                                             {{$nav_name}}
@@ -94,6 +94,23 @@
                                 <select name="main_branch" id="main_branch" class="js-example-basic-single w-75">
                                     <option value="1">بله</option>
                                     <option value="0">خیر</option>
+                                </select>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <label for="father_id" class="w-25">پدرش کیست</label>
+                                <select name="father_id" id="father_id" class="js-example-basic-single w-75">
+                                    <option value="0">
+                                        خودش والد اصلی است
+                                    </option>
+                                    @foreach($catMenu as $cat)
+                                        @php
+                                            $cat_id = $cat->id;
+                                            $cat_name = $cat->cat_nav_title;
+                                        @endphp
+                                        <option value="{{$cat_id}}">
+                                            {{$cat_name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- Previous -->

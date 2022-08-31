@@ -10,7 +10,7 @@
             font-size: 12px;
             color: #62666d;
         }
-        #mainMenu > div > ul > li#category {
+        #mainMenu > div > ul > li.category {
             font-size: 14px;
             font-weight: 600;
             color: #424750;
@@ -38,7 +38,7 @@
             display: block;
         }
         .dropdown-content {
-            width: fit-content;
+            width: 17%;
             border-left: 1px solid #c0c0c0;
         }
         .dropdown-item {
@@ -48,13 +48,14 @@
         .dropdown-item .row .col {
             padding: 0;
         }
-        #category .dropdown-item:hover > a, #category .dropdown-item .row .col ul li:hover a, #category .dropdown-item .row .col ul li:hover a h4 {
+        .category .dropdown-item:hover > a, .category .dropdown-item .row .col ul li:hover a, .category .dropdown-item .row .col ul li:hover a h4 {
             color: #ef4056;
         }
         .dropdown-item .row {
             position: absolute;
             right: 12rem;
             top: 0;
+            width: 83%;
             height: 100%;
             display: none;
         }
@@ -93,46 +94,52 @@
                         <nav id="mainMenu" class="d-flex position-relative pt-2">
                             <div class="d-flex justify-content-between align-items-center flex-grow-1">
                                 <ul class="d-none d-lg-flex align-items-center">
-                                    @foreach($navs as $item)
-{{--                                        @php--}}
-{{--                                        $nav_id = $item->nav_id;--}}
-{{--                                        $nav_url = $item->nav_url;--}}
-{{--                                        $nav_name = $item->nav_name;--}}
-{{--                                        $nav_title = $item->nav_title;--}}
-{{--                                        $nav_uri = $item->nav_uri;--}}
-{{--                                        $hasChild = $item->hasChild;--}}
-{{--                                        $father_id = $item->father_id;--}}
-{{--                                        @endphp--}}
-                                    @if($item->main_nav_name != null)
-                                    <li id="category" class="category px-2 d-flex align-items-center">
+                                    @foreach($navs as $main)
+                                    @if($main->main_nav_name != null)
+                                    <li class="@if($main->hasMegaMenu == 1)category @endif px-2 d-flex align-items-center">
                                         <div class="d-flex align-items-center">
                                             <i class="fas fa-bars me-2"></i>
-                                            {{$item->main_nav_name}}
+                                            {{$main->main_nav_name}}
                                         </div>
-                                        @if($item->hasMegaMenu == 1)
+                                        @if($main->hasMegaMenu == 1)
                                         <div class="dropdown-container">
                                             <ul class="dropdown-content p-0">
-                                                <li class="dropdown-item">
-                                                    @if($item->cat_nav_title != null)
-                                                    <a href="#">
-                                                        {{$item->cat_nav_title}}
+                                                @foreach($catMenu as $cat)
+                                                    @if($cat->father_id == $main->id && $cat->cat_nav_title != null)
+                                                    <li class="dropdown-item">
+                                                    <a href="{{$cat->cat_nav_url}}">
+                                                        {{$cat->cat_nav_title}}
                                                     </a>
-                                                    @endif
-                                                    @if($item->hasChild == 1)
+                                                    @if($cat->hasChild == 1)
                                                     <div class="row overflow-auto">
                                                         <div class="col">
                                                             <ul>
-                                                                <li><a href="#"><h4>لوازم جانبی گوشی</h4></a></li>
+                                                                @foreach($subMenu as $sub)
+                                                                @if($sub->father_id == $cat->id)
+                                                                <li>
+                                                                    <a href="{{$sub->sub_nav_url}}">
+                                                                        @if($sub->main_branch == 1)
+                                                                        <h4>{{$sub->sub_nav_title}}</h4>
+                                                                        @else
+                                                                            {{$sub->sub_nav_title}}
+                                                                        @endif
+                                                                    </a>
+                                                                </li>
+                                                                @endif
+                                                                @endforeach
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    @endif
                                                 </li>
+                                                @endif
+                                                @endif
+                                                @endforeach
                                             </ul>
                                         </div>
                                         @endif
                                     </li>
                                     @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </nav>
