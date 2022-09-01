@@ -129,6 +129,7 @@ class MediasController extends Controller
         $extraController = new ExtraController();
         $randomNum = $extraController->randomNum();
         $a = $request;
+
         if (isset($request->index)) {
             if (file_exists($photo_path)) {
                 unlink($photo_path);
