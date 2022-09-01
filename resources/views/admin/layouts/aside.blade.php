@@ -62,9 +62,26 @@
                     افزودن
                 </a>
             </div>
-            <a href="{{url("/")}}/adm/navs" class="list-group-item list-group-item-action py-2 ripple">
-                <i class="fas fa-bars {{--fa-chart-pie--}} fa-fw me-3"></i><span>مدیریت منو</span>
-            </a>
+{{--            <a href="{{url("/")}}/adm/navs" class="list-group-item list-group-item-action py-2 ripple">--}}
+{{--                <i class="fas fa-bars --}}{{--fa-chart-pie--}}{{-- fa-fw me-3"></i><span>مدیریت منو</span>--}}
+{{--            </a>--}}
+            <button class="list-group-item list-group-item-action py-2 ripple side-dropdown-btn d-flex justify-content-between">
+                <div>
+                    <i class="fas fa-bars fa-fw me-3"></i>
+                    <span>مدیریت منو</span>
+                </div>
+                <i class="fas fa-caret-down"></i>
+            </button>
+            <div class="side-dropdown-content ps-3" style="background: #f5f5f5; display: none">
+                <a href="{{url('/')}}/adm/navs" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
+                    <i class="fas fa me-3"></i>
+                    پیش نمایش منو
+                </a>
+                <a href="{{url('/')}}/adm/navs/create" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
+                    <i class="fas fa-edit me-3"></i>
+                    ساخت منو
+                </a>
+            </div>
             <a href="{{url("/")}}/adm/prods" class="list-group-item list-group-item-action py-2 ripple"><i
                     class="fas fa-box {{--fa-chart-bar--}} fa-fw me-3"></i><span>مدیریت محصولات</span></a>
             <a href="{{url("/")}}/adm/pages" class="list-group-item list-group-item-action py-2 ripple"><i

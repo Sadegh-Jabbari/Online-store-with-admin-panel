@@ -6,6 +6,9 @@
             padding: 0;
             list-style: none;
         }
+        #mainMenu li {
+            cursor: pointer;
+        }
         #mainMenu > div > ul >  li a {
             font-size: 12px;
             color: #62666d;
@@ -49,7 +52,7 @@
             padding: 0;
         }
         .category .dropdown-item:hover > a, .category .dropdown-item .row .col ul li:hover a, .category .dropdown-item .row .col ul li:hover a h4 {
-            color: #ef4056;
+            color: #ef4056 !important;
         }
         .dropdown-item .row {
             position: absolute;

@@ -54,15 +54,15 @@
                         <form action="{{route("sliders.store")}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-form mb-2 w-100">
-                                <label for="slider_uri" class="input-form-label btn digi-red text-white">عنوان انگلیسی</label>
+                                <label for="slider_uri" id="slider_uri" class="input-form-label btn digi-red text-white">عنوان انگلیسی</label>
                                 <input type="text" name="slider_uri" id="slider_uri">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="slider_name" class="input-form-label btn digi-red text-white">متن جایگزین</label>
+                                <label for="slider_name" id="slider_name" class="input-form-label btn digi-red text-white">متن جایگزین</label>
                                 <input type="text" name="slider_name" id="slider_name">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="slider_number" class="input-form-label btn digi-red text-white">شماره اسلایدر</label>
+                                <label for="slider_number" id="slider_number" class="input-form-label btn digi-red text-white">شماره اسلایدر</label>
                                 <input type="number" name="slider_number" id="slider_number">
                             </div>
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
@@ -105,19 +105,24 @@
 @section("extrajs")
     <script>
         $(document).ready(function(){
-            $(".input-form-label").on("click", function(){
-                $(this).removeClass("btn");
-                $(this).removeClass("digi-red");
-                $(this).removeClass("text-white");
+            $("#slider_uri").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
                 $(this).addClass("active-field");
-                $(".input-form input").addClass("active-field");
+                $("input#slider_uri").addClass("active-field");
+            });
+            $("#slider_name").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
+                $(this).addClass("active-field");
+                $("input#slider_name").addClass("active-field");
+            });
+            $("#slider_number").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
+                $(this).addClass("active-field");
+                $("input#slider_number").addClass("active-field");
             });
             $("[type=reset]").on("click", function(){
-                $(".input-form-label").addClass("btn");
-                $(".input-form-label").addClass("digi-red");
-                $(".input-form-label").addClass("text-white");
-                $(".input-form-label").removeClass("active-field");
-                $(".input-form input").removeClass("active-field");
+                $(".input-form-label").addClass("btn digi-red text-white");
+                $(".input-form-label, .input-form input").removeClass("active-field");
             });
             $("#select-img").on("click", function () {
                 $("#modal-box").css("display", "block");

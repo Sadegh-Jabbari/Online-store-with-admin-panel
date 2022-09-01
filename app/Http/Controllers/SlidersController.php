@@ -75,9 +75,11 @@ class SlidersController extends Controller
      * @param  \App\Models\admin\sliders  $sliders
      * @return \Illuminate\Http\Response
      */
-    public function edit(sliders $sliders)
+    public function edit(sliders $sliders, $id)
     {
-        //
+        $slider = $sliders::find($id);
+        $media = medias::all();
+        return view('admin.sliders.edite', compact('slider', 'media'));
     }
 
     /**
@@ -87,9 +89,33 @@ class SlidersController extends Controller
      * @param  \App\Models\admin\sliders  $sliders
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sliders $sliders)
+    public function update(Request $request, sliders $sliders, $id)
     {
-        //
+        $slider = $sliders::find($id);
+        $sliderID = $slider->media_id;
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
+        $a = $request;
+        $media = new medias();
+        $find_photo = $media::find($sliderID);
+        $photo_path = $find_photo->photo_path;
+        if (isset($request->index)) {
+            if (file_exists($photo_path)) {
+                unlink($photo_path);
+            }
+            $file = $request->file('index');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/sliders/', $filename);
+            $finaldes = 'uploads/medias/sliders/' . $filename;
+            $a['photo_path'] = $finaldes;
+            $media->photo_path = $a['photo_path'];
+            $media->save();
+            $mediaId = $media->id;
+            $a['media_id'] = $mediaId;
+        }
+        $slider->update($a->all());
+        return redirect(route("sliders.index"));
     }
 
     /**
@@ -98,8 +124,17 @@ class SlidersController extends Controller
      * @param  \App\Models\admin\sliders  $sliders
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sliders $sliders)
+    public function destroy(sliders $sliders, $id)
     {
-        //
+        $slider = $sliders::find($id);
+        $sliderID = $slider->media_id;
+        $media = new medias();
+        $find_photo = $media::find($sliderID);
+        $photo_path = $find_photo->photo_path;
+        if (file_exists($photo_path)) {
+            unlink($photo_path);
+        }
+        $slider->destroy($id);
+        return redirect(route("sliders.index"));
     }
 }

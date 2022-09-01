@@ -58,8 +58,10 @@
                                         </td>
                                         <td class="p-2">
                                             <div class="d-flex justify-content-evenly">
-                                                <a href="#" class="btn btn-success">ویرایش</a>
-                                                <form action="" method="post">
+                                                <a href="{{route("sliders.edit", $item->id)}}" class="btn btn-success">ویرایش</a>
+                                                <form action="{{route("sliders.destroy", $item->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
                                                     <input type="submit" value="حذف" class="btn btn-danger">
                                                 </form>
                                             </div>

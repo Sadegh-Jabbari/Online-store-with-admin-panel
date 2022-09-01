@@ -39,18 +39,13 @@ class MediasController extends Controller
         $extraController = new ExtraController();
         $randomNum = $extraController->randomNum();
         $a = $request;
-        $media = new medias();
-        if (isset($request->media_id)) {
-            $file = $request->file('media_id');
+        if (isset($request->index)) {
+            $file = $request->file('index');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = $randomNum . '.' . $extension;
             $file->move('uploads/medias/', $filename);
             $finaldes = 'uploads/medias/' . $filename;
             $a['photo_path'] = $finaldes;
-            $media->photo_path = $a['photo_path'];
-            $media->save();
-            $mediaId = $media->id;
-            $a['media_id'] = $mediaId;
         }
         medias::create($a->all());
         return redirect(route("media.index"));
@@ -114,9 +109,10 @@ class MediasController extends Controller
      * @param  \App\Models\medias  $medias
      * @return \Illuminate\Http\Response
      */
-    public function edit(medias $medias)
+    public function edit(medias $medias, $id)
     {
-        //
+        $media = $medias::find($id);
+        return view('admin.media.edit', compact('media'));
     }
 
     /**
@@ -126,9 +122,26 @@ class MediasController extends Controller
      * @param  \App\Models\medias  $medias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, medias $medias)
+    public function update(Request $request, medias $medias, $id)
     {
-        //
+        $media = $medias::find($id);
+        $photo_path = $media->photo_path;
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
+        $a = $request;
+        if (isset($request->index)) {
+            if (file_exists($photo_path)) {
+                unlink($photo_path);
+            }
+            $file = $request->file('index');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/', $filename);
+            $finaldes = 'uploads/medias/' . $filename;
+            $a['photo_path'] = $finaldes;
+        }
+        $media->update($a->all());
+        return redirect(route("media.index"));
     }
 
     /**
@@ -137,8 +150,14 @@ class MediasController extends Controller
      * @param  \App\Models\medias  $medias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(medias $medias)
+    public function destroy(medias $medias, $id)
     {
-        //
+        $media = $medias::find($id);
+        $photo_path = $media->photo_path;
+        if (file_exists($photo_path)) {
+            unlink($photo_path);
+        }
+        $media->destroy($id);
+        return redirect(route("media.index"));
     }
 }

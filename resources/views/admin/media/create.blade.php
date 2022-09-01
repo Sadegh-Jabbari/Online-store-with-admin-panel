@@ -19,15 +19,15 @@
                         <form action="{{route("media.store")}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-form mb-2 w-100">
-                                <label for="photo_name" class="input-form-label btn digi-red text-white">عنوان عکس</label>
+                                <label for="photo_name" id="photo_name" class="input-form-label btn digi-red text-white">عنوان عکس</label>
                                 <input type="text" name="photo_name" id="photo_name">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="photo_alt" class="input-form-label btn digi-red text-white">متن جایگزین</label>
+                                <label for="photo_alt" id="photo_alt" class="input-form-label btn digi-red text-white">متن جایگزین</label>
                                 <input type="text" name="photo_alt" id="photo_alt">
                             </div>
                             <div class="input-form mb-2 w-100">
-                                <label for="photo_descript" class="input-form-label btn digi-red text-white">توضیحات</label>
+                                <label for="photo_descript" id="photo_descript" class="input-form-label btn digi-red text-white">توضیحات</label>
                                 <input type="text" name="photo_descript" id="photo_descript">
                             </div>
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
@@ -36,8 +36,8 @@
                                     افزودن عکس
                                 </p>
                             </div>
-                            <label for="media_id" class="btn digi-red text-white w-100">بارگذاری عکس</label>
-                            <input type="file" name="media_id" id="media_id" class="d-none">
+                            <label for="index" class="btn digi-red text-white w-100">بارگذاری عکس</label>
+                            <input type="file" name="index" id="index" class="d-none">
                             <div class="d-flex justify-content-center mt-4">
                                 <button type="submit" class="btn text-white me-3" style="background: #ef394e; width: 15%">ثبت</button>
                                 <button type="reset" class="btn text-white" style="background: #ef394e; width: 15%">بازنشانی</button>
@@ -58,19 +58,24 @@
 @section("extrajs")
     <script>
         $(document).ready(function(){
-            $(".input-form-label").on("click", function(){
-                $(this).removeClass("btn");
-                $(this).removeClass("digi-red");
-                $(this).removeClass("text-white");
+            $("#photo_name").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
                 $(this).addClass("active-field");
-                $(".input-form input").addClass("active-field");
+                $("input#photo_name").addClass("active-field");
+            });
+            $("#photo_alt").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
+                $(this).addClass("active-field");
+                $("input#photo_alt").addClass("active-field");
+            });
+            $("#photo_descript").on("click", function(){
+                $(this).removeClass("btn digi-red text-white");
+                $(this).addClass("active-field");
+                $("input#photo_descript").addClass("active-field");
             });
             $("[type=reset]").on("click", function(){
-                $(".input-form-label").addClass("btn");
-                $(".input-form-label").addClass("digi-red");
-                $(".input-form-label").addClass("text-white");
-                $(".input-form-label").removeClass("active-field");
-                $(".input-form input").removeClass("active-field");
+                $(".input-form-label").addClass("btn digi-red text-white");
+                $(".input-form-label, .input-form input").removeClass("active-field");
             });
         });
 
