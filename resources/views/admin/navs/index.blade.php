@@ -81,6 +81,17 @@
         .dropdown-item .col li {
             padding: 0.4rem 1rem;
         }
+        .separator p {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        td, th {
+            text-align: center;
+        }
+        td a, td a:hover {
+            color: inherit;
+        }
     </style>
 @endsection
 @section("main")
@@ -94,6 +105,11 @@
                         <h5 class="mb-0 text-center"><strong>مدیریت منو ها</strong></h5>
                     </div>
                     <div class="card-body">
+                        <div class="separator border-bottom border-2 border-dark my-5 position-relative">
+                            <p class="fw-bold position-absolute m-0 px-5 bg-white">
+                                پیش نمایش منو
+                            </p>
+                        </div>
                         <nav id="mainMenu" class="d-flex position-relative pt-2">
                             <div class="d-flex justify-content-between align-items-center flex-grow-1">
                                 <ul class="d-none d-lg-flex align-items-center">
@@ -146,6 +162,205 @@
                                 </ul>
                             </div>
                         </nav>
+                        <div class="separator border-bottom border-2 border-dark my-5 position-relative">
+                            <p class="fw-bold position-absolute m-0 px-5 bg-white">
+                                ویرایش گزینه های اصلی
+                            </p>
+                        </div>
+                        <div>
+                            <table class="w-100" style="box-shadow: 0 0 0 2px #ef394e; border-radius: 8px; border-style: hidden">
+                                <thead class="border-bottom border-danger">
+                                <tr>
+                                    <th class="p-2 text-center" style="width: 5%">ردیف</th>
+                                    <th class="p-2" style="width: 20%">عنوان</th>
+                                    <th class="p-2" style="width: 35%">آدرس</th>
+                                    <th class="p-2" style="width: 15%">دارای زیرمجموعه:</th>
+                                    <th class="p-2 text-center" style="width: 25%">مدیریت</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($navs as $nav)
+                                    @if($nav->main_nav_name != null)
+                                    <tr>
+                                        <td class="p-2 text-center">
+                                            <p class="m-0">{{$nav->id}}</p>
+                                        </td>
+                                        <td class="p-2">
+                                            <div class="w-100" style="max-height: 200px">
+                                                <p class="m-0">{{$nav->main_nav_name}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="p-2">
+                                            <div class="w-100" style="max-height: 200px">
+                                                <a href="{{$nav->main_nav_url}}" class="m-0">{{$nav->main_nav_url}}</a>
+                                            </div>
+                                        </td>
+                                        <td class="p-2">
+                                            <div class="w-100" style="max-height: 200px">
+                                                @if($nav->hasMegaMenu == 1)
+                                                    <p class="m-0">هست</p>
+                                                @endif
+                                                @if($nav->hasMegaMenu == 0)
+                                                    <p class="m-0">نیست</p>
+                                                @endif
+                                            </div>
+                                        </td>
+                                        <td class="p-2">
+                                            <div class="d-flex justify-content-evenly">
+                                                <a href="{{route("navs.edit", $nav->id)}}" class="btn btn-success">ویرایش</a>
+                                                <form action="{{route("navs.destroy", $nav->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="submit" value="حذف" class="btn btn-danger">
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="separator border-bottom border-2 border-dark my-5 position-relative">
+                            <p class="fw-bold position-absolute m-0 px-5 bg-white">
+                                ویرایش دسته بندی ها
+                            </p>
+                        </div>
+                        <div>
+                            <table class="w-100" style="box-shadow: 0 0 0 2px #ef394e; border-radius: 8px; border-style: hidden">
+                                <thead class="border-bottom border-danger">
+                                <tr>
+                                    <th class="p-2 text-center" style="width: 0%">ردیف</th>
+                                    <th class="p-2" style="width: 20%">عنوان</th>
+                                    <th class="p-2" style="width: 20%">آدرس</th>
+                                    <th class="p-2" style="width: 20%">زیر مجموعه گزینه ی:</th>
+                                    <th class="p-2" style="width: 10%">دارای زیر منو:</th>
+                                    <th class="p-2 text-center" style="width: 26%">مدیریت</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($catMenu as $cat)
+                                    @if($cat->cat_nav_title != null)
+                                        <tr>
+                                            <td class="p-2 text-center">
+                                                <p class="m-0">{{$cat->id}}</p>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="w-100" style="max-height: 200px">
+                                                    <p class="m-0">{{$cat->cat_nav_title}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="w-100" style="max-height: 200px">
+                                                    <a href="{{$cat->cat_nav_url}}" class="m-0">{{$cat->cat_nav_url}}</a>
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                @php
+                                                $catId = $cat->father_id;
+                                                $fatherId = \App\Models\navs::find($catId);
+                                                $fatherName = $fatherId->main_nav_name;
+                                                @endphp
+                                                <div class="w-100" style="max-height: 200px">
+                                                    <p class="m-0">{{$fatherName}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="w-100" style="max-height: 200px">
+                                                    @if($cat->hasChild == 1)
+                                                    <p class="m-0">هست</p>
+                                                    @endif
+                                                    @if($cat->hasChild == 0)
+                                                    <p class="m-0">نیست</p>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="d-flex justify-content-evenly">
+                                                    <a href="{{route("navs.edit", $cat->id)}}" class="btn btn-success">ویرایش</a>
+                                                    <form action="{{route("navs.destroy", $cat->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="submit" value="حذف" class="btn btn-danger">
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="separator border-bottom border-2 border-dark my-5 position-relative">
+                            <p class="fw-bold position-absolute m-0 px-5 bg-white">
+                                ویرایش زیرمنو ها
+                            </p>
+                        </div>
+                        <div>
+                            <table class="w-100" style="box-shadow: 0 0 0 2px #ef394e; border-radius: 8px; border-style: hidden">
+                                <thead class="border-bottom border-danger">
+                                <tr>
+                                    <th class="p-2 text-center" style="width: 0%">ردیف</th>
+                                    <th class="p-2" style="width: 20%">عنوان</th>
+                                    <th class="p-2" style="width: 20%">آدرس</th>
+                                    <th class="p-2" style="width: 20%">زیر مجموعه گزینه ی:</th>
+                                    <th class="p-2" style="width: 10%">شاخه اصلی:</th>
+                                    <th class="p-2 text-center" style="width: 26%">مدیریت</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($subMenu as $sub)
+                                    @if($sub->sub_nav_title != null)
+                                        <tr>
+                                            <td class="p-2 text-center">
+                                                <p class="m-0">{{$sub->id}}</p>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="w-100" style="max-height: 200px">
+                                                    <p class="m-0">{{$sub->sub_nav_title}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="w-100" style="max-height: 200px">
+                                                    <a href="{{$sub->sub_nav_url}}" class="m-0">{{$sub->sub_nav_url}}</a>
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                @php
+                                                    $subId = $sub->father_id;
+                                                    $father_id = \App\Models\categoriesMenu::find($subId);
+                                                    $father_name = $father_id->cat_nav_title;
+                                                @endphp
+                                                <div class="w-100" style="max-height: 200px">
+                                                    <p class="m-0">{{$father_name}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="w-100" style="max-height: 200px">
+                                                    @if($sub->main_branch == 1)
+                                                        <p class="m-0">هست</p>
+                                                    @endif
+                                                    @if($sub->main_branch == 0)
+                                                        <p class="m-0">نیست</p>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td class="p-2">
+                                                <div class="d-flex justify-content-evenly">
+                                                    <a href="{{route("navs.edit", $sub->id)}}" class="btn btn-success">ویرایش</a>
+                                                    <form action="{{route("navs.destroy", $sub->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="submit" value="حذف" class="btn btn-danger">
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </section>

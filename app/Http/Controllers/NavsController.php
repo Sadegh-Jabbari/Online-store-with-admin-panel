@@ -68,9 +68,15 @@ class NavsController extends Controller
      * @param  \App\Models\navs  $navs
      * @return \Illuminate\Http\Response
      */
-    public function edit(navs $navs)
+    public function edit(navs $navs, $id)
     {
-        return view('admin.navs.edit');
+        $navs = navs::all();
+        $catMenu = categoriesMenu::all();
+        $subMenu = subMenu::all();
+        $nav = navs::find($id);
+        $cat = categoriesMenu::find($id);
+        $sub = subMenu::find($id);
+        return view('admin.navs.edit', compact('navs', 'catMenu', 'subMenu', 'nav', 'cat', 'sub'));
     }
 
     /**
@@ -80,9 +86,15 @@ class NavsController extends Controller
      * @param  \App\Models\navs  $navs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, navs $navs)
+    public function update(Request $request, navs $navs, $id)
     {
-        //
+        $nav = $navs::find($id);
+        $cat = categoriesMenu::find($id);
+        $sub = subMenu::find($id);
+        $nav->update($request->all());
+        $cat->update($request->all());
+        $sub->update($request->all());
+        return redirect(route("navs.index"));
     }
 
     /**
@@ -91,8 +103,14 @@ class NavsController extends Controller
      * @param  \App\Models\navs  $navs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(navs $navs)
+    public function destroy(navs $navs, $id)
     {
-        return view('admin.navs.delete');
+        $nav = navs::find($id);
+        $cat = categoriesMenu::find($id);
+        $sub = subMenu::find($id);
+        $nav->destroy($id);
+        $cat->destroy($id);
+        $sub->destroy($id);
+        return redirect(route('navs.index'));
     }
 }
