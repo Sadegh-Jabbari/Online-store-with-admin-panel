@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\medias;
 use App\Models\products;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('admin.product.index');
+        $prods = products::all();
+        return view('admin.product.index', compact("prods"));
     }
 
     /**
@@ -36,35 +38,24 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
 
-        $file = $request->file('ImgP');
-        $extension = $file->getClientOriginalExtension();
-        $fileName = $this->randomNum().'.'.$extension;
-        $file->move('uploads/medias/product/', $fileName);
-        $finaldes = 'uploads/medias/product/'. $fileName;
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
         $a = $request;
-        $a['ImgP'] = $finaldes;
-//        dd($a);
-
-        products::create([
-            'photo_name' => $a['photo_name'],
-            'photo_path' => $a['photo_path'],
-            'photo_alt' => $a['photo_alt'],
-            'photo_descript' => $a['photo_descript'],
-        ]);
-    }
-
-    public function randomNum(){
-        $first = rand(1, 100);
-        $sec = rand(1, 1000);
-        $final = rand($first, $sec);
-        $alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-        $alphaRand = rand(0, 25);
-        $alpha = $alphabet[$alphaRand];
-        $alphaRand = rand(0, 25);
-        $alpha = $alphabet[$alphaRand];
-        $alphaRand = rand(0, 25);
-        $alpha = $alphabet[$alphaRand];
-        return $final . '-' . $alpha . '-' . time();
+        $media = new medias();
+        if (isset($request->index)) {
+            $file = $request->file('index');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/products/', $filename);
+            $finaldes = 'uploads/medias/products/' . $filename;
+            $a['photo_path'] = $finaldes;
+            $media->photo_path = $a['photo_path'];
+            $media->save();
+            $mediaId = $media->id;
+            $a['media_id'] = $mediaId;
+        }
+        products::create($a->all());
+        return redirect(route("prods.index"));
     }
 
     /**
@@ -84,9 +75,11 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(products $products)
+    public function edit(products $products, $id)
     {
-        //
+        $prod = $products::find($id);
+        $media = medias::all();
+        return view('admin.product.edite', compact('prod', 'media'));
     }
 
     /**
@@ -96,9 +89,33 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, products $products)
+    public function update(Request $request, products $products, $id)
     {
-        //
+        $prod = $products::find($id);
+        $prodID = $prod->media_id;
+        $extraController = new ExtraController();
+        $randomNum = $extraController->randomNum();
+        $a = $request;
+        $media = new medias();
+        $find_photo = $media::find($prodID);
+        $photo_path = $find_photo->photo_path;
+        if (isset($request->index)) {
+            if (file_exists($photo_path)) {
+                unlink($photo_path);
+            }
+            $file = $request->file('index');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = $randomNum . '.' . $extension;
+            $file->move('uploads/medias/products/', $filename);
+            $finaldes = 'uploads/medias/products/' . $filename;
+            $a['photo_path'] = $finaldes;
+            $media->photo_path = $a['photo_path'];
+            $media->save();
+            $mediaId = $media->id;
+            $a['media_id'] = $mediaId;
+        }
+        $prod->update($a->all());
+        return redirect(route("prods.index"));
     }
 
     /**
@@ -107,8 +124,17 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $products)
+    public function destroy(products $products, $id)
     {
-        //
+        $prod = $products::find($id);
+        $prodID = $prod->media_id;
+        $media = new medias();
+        $find_photo = $media::find($prodID);
+        $photo_path = $find_photo->photo_path;
+        if (file_exists($photo_path)) {
+            unlink($photo_path);
+        }
+        $prod->destroy($id);
+        return redirect(route("prods.index"));
     }
 }

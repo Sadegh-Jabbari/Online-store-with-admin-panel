@@ -46,7 +46,7 @@ header .search form input::placeholder {
 }
 @media (min-width: 991.98px) {
   main {
-    padding-right: 240px;
+    padding-right: 250px;
   }
     .md-screen-header {
         display: none;
@@ -64,7 +64,7 @@ header .search form input::placeholder {
   right: 0;
   padding: 58px 0 0; /* Height of navbar */
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-  width: 240px;
+  width: 250px;
   z-index: 600;
 }
 
@@ -156,6 +156,9 @@ nav#sidebarMenu .list-group-item.dark {
 #sidebarMenu .side-dropdown-btn.active + div {
     display: block !important;
 }
+#sidebarMenu .side-dropdown-btn.active > svg {
+    rotate: 180deg;
+}
 .card.dark {
     background: #36383C;
     color: #fff;
@@ -198,7 +201,7 @@ nav#sidebarMenu .list-group-item.dark {
     display: flex;
     align-items: center;
 }
-.input-form input {
+.input-form input, .input-form select {
     display: none;
     transition: 2s;
 }

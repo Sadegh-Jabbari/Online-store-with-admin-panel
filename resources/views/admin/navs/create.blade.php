@@ -15,6 +15,24 @@
                     </div>
                     <div class="card-body">
                         <div class="px-5 pb-5 mb-3 position-relative" style="border: 4px solid #ef394e; border-radius: 8px">
+{{--                            <div class="separator border-bottom border-2 border-dark my-5 position-relative">--}}
+{{--                                <p class="fw-bold position-absolute m-0 px-5 bg-white"--}}
+{{--                                   style="top: 50%; left: 50%; transform: translate(-50%, -50%)">--}}
+{{--                                    نام منو--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                            <div class="position-relative">--}}
+{{--                                <form action="{{route("navs.store")}}" method="POST" id="nav-form">--}}
+{{--                                    @csrf--}}
+{{--                                    <div class="d-flex mb-2">--}}
+{{--                                        <label for="main_nav_url" class="w-25">نام منو</label>--}}
+{{--                                        <input type="text" name="mainMenu_title" id="main_nav_url" class="w-50">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="position-absolute d-flex flex-column justify-content-between h-100 end-0 top-0" style="width: 20%">--}}
+{{--                                        <button type="submit" class="btn digi-red text-white w-100 d-flex justify-content-center align-items-center" style="height: 100%">ثبت</button>--}}
+{{--                                    </div>--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
                                 <p class="fw-bold position-absolute m-0 px-5 bg-white"
                                    style="top: 50%; left: 50%; transform: translate(-50%, -50%)">

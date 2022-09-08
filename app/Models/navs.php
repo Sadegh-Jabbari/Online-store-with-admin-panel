@@ -14,6 +14,4 @@ class navs extends Model
         'main_nav_name',
         'hasMegaMenu',
     ];
-}{
-}{
 }

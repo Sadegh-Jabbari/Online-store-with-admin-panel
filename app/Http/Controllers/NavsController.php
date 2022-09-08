@@ -42,12 +42,15 @@ class NavsController extends Controller
      */
     public function store(Request $request)
     {
-        $navs = new navs();
-        $catMenu = new categoriesMenu();
-        $subMenu = new  subMenu();
-        navs::create($request->all());
-        categoriesMenu::create($request->all());
-        subMenu::create($request->all());
+        if ($request->main_nav_name != null) {
+            navs::create($request->all());
+        }
+        if ($request->cat_nav_title != null) {
+            categoriesMenu::create($request->all());
+        }
+        if ($request->sub_nav_title != null) {
+            subMenu::create($request->all());
+        }
         return redirect(route("navs.index"));
     }
 
