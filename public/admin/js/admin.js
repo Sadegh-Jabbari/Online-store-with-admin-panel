@@ -1,13 +1,22 @@
 $(document).ready(function() {
 
     // Select2 for select boxes
-    $('.js-example-basic-single').select2();
+    // $('.js-example-basic-single').select2();
 
     // Summernote for rich text editor
     $('#summernote').summernote({
         placeholder: 'توضیحات کامل تر خود را اینجا درج کنید',
         tabsize: 20,
-        height: 100
+        height: 100,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
     });
 
     // $("[type=file]").text("jvhv");

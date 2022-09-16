@@ -179,11 +179,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @php
+                                $i = 1;
+                                $j = 1;
+                                $k = 1;
+                                @endphp
                                 @foreach($navs as $nav)
                                     @if($nav->main_nav_name != null)
                                     <tr>
                                         <td class="p-2 text-center">
-                                            <p class="m-0">{{$nav->id}}</p>
+                                            <p class="m-0">
+                                                @php
+                                                echo $i;
+                                                    $i++;
+                                                @endphp
+                                            </p>
                                         </td>
                                         <td class="p-2">
                                             <div class="w-100" style="max-height: 200px">
@@ -243,7 +253,12 @@
                                     @if($cat->cat_nav_title != null)
                                         <tr>
                                             <td class="p-2 text-center">
-                                                <p class="m-0">{{$cat->id}}</p>
+                                                <p class="m-0">
+                                                    @php
+                                                        echo $j;
+                                                            $j++;
+                                                    @endphp
+                                                </p>
                                             </td>
                                             <td class="p-2">
                                                 <div class="w-100" style="max-height: 200px">
@@ -313,7 +328,12 @@
                                     @if($sub->sub_nav_title != null)
                                         <tr>
                                             <td class="p-2 text-center">
-                                                <p class="m-0">{{$sub->id}}</p>
+                                                <p class="m-0">
+                                                    @php
+                                                        echo $k;
+                                                            $k++;
+                                                    @endphp
+                                                </p>
                                             </td>
                                             <td class="p-2">
                                                 <div class="w-100" style="max-height: 200px">
@@ -348,7 +368,7 @@
                                             <td class="p-2">
                                                 <div class="d-flex justify-content-evenly">
                                                     <a href="{{route("navs.edit", $sub->id)}}" class="btn btn-success">ویرایش</a>
-                                                    <form action="{{route("navs.destroy", $sub->id)}}" method="post">
+                                                    <form action="{{route("navs.destroy", $sub->id)}}" method="post" name="sub_destroy">
                                                         @csrf
                                                         @method('DELETE')
                                                         <input type="submit" value="حذف" class="btn btn-danger">

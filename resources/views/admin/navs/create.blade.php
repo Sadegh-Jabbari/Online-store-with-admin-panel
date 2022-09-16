@@ -14,7 +14,40 @@
                         <h5 class="mb-0 text-center"><strong>ایجاد منو</strong></h5>
                     </div>
                     <div class="card-body">
+                        @if(\App\Models\navs::count() == 0)
+                            <div class="separator border-bottom border-2 border-dark my-5 position-relative">
+                                <p class="fw-bold position-absolute m-0 px-5 bg-white"
+                                   style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                                    گزینه های اصلی
+                                </p>
+                            </div>
+                            <div class="position-relative">
+                                <form action="{{route("navs.store")}}" method="POST" id="nav-form">
+                                    @csrf
+                                    <div class="d-flex mb-2">
+                                        <label for="main_nav_url" class="w-25">عنوان منو اختصاصی</label>
+                                        <input type="text" name="main_nav_url" id="main_nav_url" class="w-50">
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <label for="main_nav_name" class="w-25">اسم منو</label>
+                                        <input type="text" name="main_nav_name" id="main_nav_name" class="w-50">
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <label for="hasMegaMenu" class="w-25">زیرمنو دارد؟</label>
+                                        <select name="hasMegaMenu" id="hasMegaMenu" class="js-example-basic-single w-50">
+                                            <option value="1">بله</option>
+                                            <option value="0">خیر</option>
+                                        </select>
+                                    </div>
+                                    <div class="position-absolute d-flex flex-column justify-content-between h-100 end-0 top-0" style="width: 20%">
+                                        <button type="submit" class="btn digi-red text-white w-100" style="height: 45%">ثبت</button>
+                                        <button type="reset" class="btn digi-red text-white w-100" style="height: 45%">بازنشانی</button>
+                                    </div>
+                                </form>
+                            </div>
+                        @else
                         <div class="px-5 pb-5 mb-3 position-relative" style="border: 4px solid #ef394e; border-radius: 8px">
+
 {{--                            <div class="separator border-bottom border-2 border-dark my-5 position-relative">--}}
 {{--                                <p class="fw-bold position-absolute m-0 px-5 bg-white"--}}
 {{--                                   style="top: 50%; left: 50%; transform: translate(-50%, -50%)">--}}
@@ -63,6 +96,7 @@
                                     </div>
                                 </form>
                             </div>
+                            @if(\App\Models\navs::count() > 0)
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
                                 <p class="fw-bold position-absolute m-0 px-5 bg-white"
                                    style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
@@ -107,6 +141,8 @@
                                     </div>
                                 </form>
                             </div>
+                            @endif
+                            @if(\App\Models\categoriesMenu::count() > 0)
                             <div class="separator border-bottom border-2 border-dark my-5 position-relative">
                                 <p class="fw-bold position-absolute m-0 px-5 bg-white"
                                    style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
@@ -151,11 +187,15 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="position-absolute d-flex justify-content-evenly bg-white w-50" style="bottom: -20px;left: 50%; transform: translate(-50%)">
-                                <button class="btn digi-red text-white" id="submit-all" style="height: 40px; width: 45%">ثبت همزمان همه فرم ها</button>
-                                <button class="btn digi-red text-white" id="reset-all" style="height: 40px; width: 45%">بازنشانی همزمان همه فرم ها</button>
+                            @endif
+                            <div class="position-absolute bg-white w-50" style="bottom: -20px;left: 50%; transform: translate(-50%)">
+                                <form action="{{route('navs.index')}}" class="d-flex justify-content-evenly">
+                                    <button type="submit" class="btn digi-red text-white" id="submit-all" style="height: 40px; width: 45%">ثبت همزمان همه فرم ها</button>
+                                    <button class="btn digi-red text-white" id="reset-all" style="height: 40px; width: 45%">بازنشانی همزمان همه فرم ها</button>
+                                </form>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </section>
@@ -168,8 +208,26 @@
 @section("extrajs")
     <script>
         $(document).ready(function () {
-            $("#submit-all").on("click", function () {
-                $("#nav-form, #cat-form, #sub-form").submit();
+            // $("#submit-all").on("click", function () {
+            //     $("#nav-form, #cat-form, #sub-form").submit();
+            // });
+            $("#submit-all").on("click", function(){
+                $("form").each(function(){
+                    var formData = new FormData($(this)[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('navs.store')}}",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        // success: function(data,status) {
+                        {{--    window.location.replace({{route('navs.index')}});--}}
+                        // },
+                        // error: function(data, status) {
+                        //     alert('متاسفانه اطلاعات ثبت نشدند');
+                        // },
+                    });
+                });
             });
             $("#reset-all").on("click", function () {
                 $("#nav-form, #cat-form, #sub-form").trigger("reset");

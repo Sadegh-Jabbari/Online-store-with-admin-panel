@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\baners;
 use App\Models\firstmgns;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class FirstmgnsController extends Controller
      */
     public function index()
     {
-        //
+        $banners = baners::all();
+        return view('admin.pages.main', compact('banners'));
     }
 
     /**

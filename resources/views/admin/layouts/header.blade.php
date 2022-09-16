@@ -18,7 +18,12 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{url('/')}}/admin/css/select2.min.css">
 {{--    <link rel="stylesheet" href="{{url('/')}}/admin/css/bootstrap.min.css">--}}
-    <link rel="stylesheet" href="{{url('/')}}/admin/css/summernote.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+{{--    <link rel="stylesheet" href="{{url('/')}}/admin/css/summernote.min.css">--}}
     <link rel="stylesheet" href="{{url('/')}}/admin/css/dropzone.css">
     <link rel="stylesheet" href="{{url('/')}}/admin/css/admin.css" />
     <link rel="stylesheet" href="{{url('/')}}/admin/style.css">

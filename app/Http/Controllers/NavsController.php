@@ -106,14 +106,24 @@ class NavsController extends Controller
      * @param  \App\Models\navs  $navs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(navs $navs, $id)
+    public function destroy(Request $request, navs $navs, $id)
     {
         $nav = navs::find($id);
         $cat = categoriesMenu::find($id);
         $sub = subMenu::find($id);
-        $nav->destroy($id);
-        $cat->destroy($id);
-        $sub->destroy($id);
+//        $name = $request->input('sub_destroy');
+//        dd($name);
+        if (isset($nav->$id)) {
+            $nav->destroy($id);
+        }
+        if (isset($cat->$id)) {
+            $cat->destroy($id);
+        }
+        if (isset($sub->$id)) {
+            $sub->destroy($id);
+        }
+//        $cat->destroy($id);
+//        $sub->destroy($id);
         return redirect(route('navs.index'));
     }
 }

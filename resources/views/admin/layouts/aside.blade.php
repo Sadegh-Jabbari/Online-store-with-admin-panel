@@ -2,7 +2,7 @@
     <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
             <a href="{{url("/")}}/adm" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>مدیریت صفحه اصلی</span>
+                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>پیشخوان</span>
             </a>
 {{--            <a href="{{url("/")}}/adm/banners" class="list-group-item list-group-item-action py-2 ripple ">--}}
 {{--                <i class="fab fa-slideshare --}}{{--fa-chart-area--}}{{-- fa-fw me-3"></i><span>مدیریت بنر</span>--}}
@@ -74,7 +74,7 @@
             </button>
             <div class="side-dropdown-content ps-3" style="background: #f5f5f5; display: none">
                 <a href="{{url('/')}}/adm/navs" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
-                    <i class="fas fa me-3"></i>
+                    <i class="fas fa-list-alt me-3"></i>
                     پیش نمایش منو
                 </a>
                 <a href="{{url('/')}}/adm/navs/create" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
@@ -111,7 +111,7 @@
                 <i class="fas fa-caret-down"></i>
             </button>
             <div class="side-dropdown-content ps-3" style="background: #f5f5f5; display: none">
-                <a href="{{url('/')}}/adm/pages" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
+                <a href="#{{--{{url('/')}}/adm/pages--}}" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
                     <i class="fas fa-file me-3"></i>
                     همه صفحات
                 </a>
@@ -119,19 +119,36 @@
                     <i class="fas fa-file-import me-3"></i>
                     ایجاد صفحه جدید
                 </a>
-                <a href="{{url('/')}}/adm/pages/create" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
+                <a href="{{url('/')}}/adm/firstmgns" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
                     <i class="fas fa-edit me-3"></i>
                     صفحه اصلی
                 </a>
             </div>
-            <a href="{{url("/")}}/adm/posts" class="list-group-item list-group-item-action py-2 ripple"><i
-                    class="fab fa-product-hunt {{--fa-building--}} fa-fw me-3"></i><span>پست ها</span></a>
+{{--            <a href="{{url("/")}}/adm/posts" class="list-group-item list-group-item-action py-2 ripple"><i--}}
+{{--                    class="fab fa-product-hunt --}}{{--fa-building--}}{{-- fa-fw me-3"></i><span>پست ها</span></a>--}}
+            <button class="list-group-item list-group-item-action py-2 ripple side-dropdown-btn d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-pen fa-fw me-3"></i>
+                    <span>پست ها</span>
+                </div>
+                <i class="fas fa-caret-down"></i>
+            </button>
+            <div class="side-dropdown-content ps-3" style="background: #f5f5f5; display: none">
+                <a href="{{url('/')}}/adm/posts" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
+                    <i class="fas fa-border-all me-3"></i>
+                    همه پست ها
+                </a>
+                <a href="{{url('/')}}/adm/posts/create" class="side-dropdown-item list-group-item list-group-item-action" style="background: #f5f5f5; border: none">
+                    <i class="fas fa-edit me-3"></i>
+                    افزودن پست
+                </a>
+            </div>
             <a href="{{url("/")}}/adm/calculator" class="list-group-item list-group-item-action py-2 ripple"><i
                     class="fas fa-calculator {{--fa-calendar--}} fa-fw me-3"></i><span>ماشین حساب</span></a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                     class="fas fa-users fa-fw me-3"></i><span>کاربران</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                    class="fas fa-money-bill fa-fw me-3"></i><span>گزارش فروش</span></a>
+{{--            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i--}}
+{{--                    class="fas fa-money-bill fa-fw me-3"></i><span>گزارش فروش</span></a>--}}
         </div>
     </div>
 </nav>
