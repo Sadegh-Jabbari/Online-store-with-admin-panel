@@ -16,6 +16,10 @@
                     </div>
                     <div class="card-body">
                         <p class="fw-bold"> رسانه جدید</p>
+                        <div class="d-flex justify-content-end mb-2">
+                            <button class="btn digi-red text-white" id="lock"><i class="fa fa-lock"></i></button>
+                            <button class="btn digi-red text-white ms-2" id="unlock"><i class="fa fa-lock-open"></i></button>
+                        </div>
                         <form action="{{route("media.store")}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-form mb-2 w-100">
@@ -73,10 +77,22 @@
                 $(this).addClass("active-field");
                 $("input#photo_descript").addClass("active-field");
             });
-            $("[type=reset]").on("click", function(){
+            $("#unlock").on("click", function () {
+                $("#photo_name").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#photo_name").addClass("active-field");
+                $("#photo_alt").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#photo_alt").addClass("active-field");
+                $("#photo_descript").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#photo_descript").addClass("active-field");
+            });
+            $("#lock").on("click", function(){
                 $(".input-form-label").addClass("btn digi-red text-white");
                 $(".input-form-label, .input-form input").removeClass("active-field");
             });
+            // $("[type=reset]").on("click", function(){
+            //     $(".input-form-label").addClass("btn digi-red text-white");
+            //     $(".input-form-label, .input-form input").removeClass("active-field");
+            // });
         });
 
         Dropzone.options.myAwesomeDropzone = {

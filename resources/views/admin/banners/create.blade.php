@@ -49,6 +49,10 @@
                         <h5 class="mb-0 text-center"><strong>ایجاد بنر جدید</strong></h5>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-end mb-2">
+                            <button class="btn digi-red text-white" id="lock"><i class="fa fa-lock"></i></button>
+                            <button class="btn digi-red text-white ms-2" id="unlock"><i class="fa fa-lock-open"></i></button>
+                        </div>
                         <form action="{{route("banners.store")}}" method="POST" enctype="multipart/form-data">
                             @csrf
 {{--                            <select name="banner" id="baner">--}}
@@ -124,10 +128,20 @@
                 $(this).addClass("active-field");
                 $("input#banner_name").addClass("active-field");
             });
-            $("[type=reset]").on("click", function(){
+            $("#unlock").on("click", function () {
+                $("#banner_uri").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#banner_uri").addClass("active-field");
+                $("#banner_name").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#banner_name").addClass("active-field");
+            });
+            $("#lock").on("click", function(){
                 $(".input-form-label").addClass("btn digi-red text-white");
                 $(".input-form-label, .input-form input").removeClass("active-field");
             });
+            // $("[type=reset]").on("click", function(){
+            //     $(".input-form-label").addClass("btn digi-red text-white");
+            //     $(".input-form-label, .input-form input").removeClass("active-field");
+            // });
             $("#select-img").on("click", function () {
                 $("#modal-box").css("display", "block");
             });

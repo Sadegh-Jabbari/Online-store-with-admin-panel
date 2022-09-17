@@ -51,6 +51,10 @@
                     </div>
                     <div class="card-body">
                         <p class="fw-bold"> عکس جدید برای اسلایدر</p>
+                        <div class="d-flex justify-content-end mb-2">
+                            <button class="btn digi-red text-white" id="lock"><i class="fa fa-lock"></i></button>
+                            <button class="btn digi-red text-white ms-2" id="unlock"><i class="fa fa-lock-open"></i></button>
+                        </div>
                         <form action="{{route("sliders.store")}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-form mb-2 w-100">
@@ -120,10 +124,22 @@
                 $(this).addClass("active-field");
                 $("input#slider_number").addClass("active-field");
             });
-            $("[type=reset]").on("click", function(){
+            $("#unlock").on("click", function () {
+                $("#slider_uri").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#slider_uri").addClass("active-field");
+                $("#slider_name").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#slider_name").addClass("active-field");
+                $("#slider_number").removeClass("btn digi-red text-white").addClass("active-field");
+                $("input#slider_number").addClass("active-field");
+            });
+            $("#lock").on("click", function(){
                 $(".input-form-label").addClass("btn digi-red text-white");
                 $(".input-form-label, .input-form input").removeClass("active-field");
             });
+            // $("[type=reset]").on("click", function(){
+            //     $(".input-form-label").addClass("btn digi-red text-white");
+            //     $(".input-form-label, .input-form input").removeClass("active-field");
+            // });
             $("#select-img").on("click", function () {
                 $("#modal-box").css("display", "block");
             });
