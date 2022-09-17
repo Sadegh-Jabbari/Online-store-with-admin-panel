@@ -50,7 +50,7 @@
                 </li>
                 <!-- Icon -->
                 <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="https://github.com/Sadegh-Jabbari">
                         <i class="fab fa-github"></i>
                     </a>
                 </li>
@@ -214,7 +214,7 @@
                 </li>
                 <!-- Icon -->
                 <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="https://github.com/Sadegh-Jabbari">
                         <i class="fab fa-github"></i>
                     </a>
                 </li>
