@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThepublicController;
 use App\Http\Controllers\BanersController;
@@ -39,26 +41,46 @@ Route::get('/search', [SearchController::class,"index"]);
 Route::post('/search', [SearchController::class,"store"]);
 
 
-Route::group(['prefix'=>'adm'], function () {
-    Route::get('/', [ReportController::class,"index"]);
+//Route::group(['prefix'=>'adm'], function () {
+//    Route::get('/', [ReportController::class,"index"]);
+//
+//    Route::resource('report',    ReportController::class);
+//    Route::resource('navs',      NavsController::class);
+//    Route::resource('banners',    BanersController::class);
+//    Route::resource('sliders',   SlidersController::class);
+//    Route::resource('prods',     ProductsController::class);
+//    Route::resource('pages',     PagesController::class);
+//    Route::resource('posts',     PostsController::class);
+//    Route::resource('media',     MediasController::class);
+//    Route::resource('firstmgns', FirstmgnsController::class);
+//    Route::resource('calculator',CalculatorController::class);
+//    Route::get(     'fcalc',       [CalculatorController::class, "fcalc"]);
+//});
 
-    Route::resource('report',    ReportController::class);
-    Route::resource('navs',      NavsController::class);
-    Route::resource('banners',    BanersController::class);
-    Route::resource('sliders',   SlidersController::class);
-    Route::resource('prods',     ProductsController::class);
-    Route::resource('pages',     PagesController::class);
-    Route::resource('posts',     PostsController::class);
-    Route::resource('media',     MediasController::class);
-    Route::resource('firstmgns', FirstmgnsController::class);
-    Route::resource('calculator',CalculatorController::class);
-    Route::get(     'fcalc',       [CalculatorController::class, "fcalc"]);
 
 
 
+
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('admin')->group(function () {
+    Route::group(['prefix' => 'adm'], function () {
+        Route::get('/', [ReportController::class,"index"]);
+
+        Route::resource('report',    ReportController::class);
+        Route::resource('navs',      NavsController::class);
+        Route::resource('banners',   BanersController::class);
+        Route::resource('sliders',   SlidersController::class);
+        Route::resource('prods',     ProductsController::class);
+        Route::resource('pages',     PagesController::class);
+        Route::resource('posts',     PostsController::class);
+        Route::resource('media',     MediasController::class);
+        Route::resource('firstmgns', FirstmgnsController::class);
+        Route::resource('users',     UsersController::class);
+        Route::resource('calculator',CalculatorController::class);
+        Route::get(     'fcalc',       [CalculatorController::class, "fcalc"]);
+    });
 });
-
-
-
-
-

@@ -145,7 +145,7 @@
             </div>
             <a href="{{url("/")}}/adm/calculator" class="list-group-item list-group-item-action py-2 ripple"><i
                     class="fas fa-calculator {{--fa-calendar--}} fa-fw me-3"></i><span>ماشین حساب</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            <a href="{{url("/")}}/adm/users" class="list-group-item list-group-item-action py-2 ripple"><i
                     class="fas fa-users fa-fw me-3"></i><span>کاربران</span></a>
 {{--            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i--}}
 {{--                    class="fas fa-money-bill fa-fw me-3"></i><span>گزارش فروش</span></a>--}}
